@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Sailec";
+  src: local("SailecRegular"), url("../fonts/SailecRegular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Sailec";
+  src: local("SailecMedium"), url("../fonts/SailecMedium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Sailec";
+  src: local("SailecBold"), url("../fonts/SailecBold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}

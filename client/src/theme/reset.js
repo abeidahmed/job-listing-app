@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
+import "../assets/stylesheet/style.css";
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -29,10 +30,10 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-  
+
   body {
     min-height: 100vh;
-    font-family:  "ProximaNova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    font-family:  "Sailec", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
                   Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
                   "Noto Color Emoji";
     color: ${props => props.theme.color.gray800};
