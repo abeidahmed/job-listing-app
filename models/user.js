@@ -44,6 +44,17 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// remove unnecessary data from the user object
+userSchema.methods.toJSON = function() {
+  const user = this;
+  const userObject = user.toObject();
+
+  delete userObject.password;
+  delete userObject.tokens;
+
+  return userObject;
+};
+
 // generate a jwt token and concat it to user collection
 userSchema.methods.generateAuthToken = async function() {
   const user = this;
