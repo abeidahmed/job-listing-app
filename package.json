@@ -1,0 +1,20 @@
+{
+  "name": "job-site",
+  "version": "1.0.0",
+  "description": "A site for developers looking to get hired and to hire.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "env-cmd -f ./config/dev.env nodemon index.js"
+  },
+  "author": "Abeid Ahmed",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.3"
+  }
+}
