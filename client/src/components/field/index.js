@@ -32,9 +32,9 @@ export const InputField = styled.input`
       case "danger":
         return css`
           border-color: ${props => props.theme.color.red600};
+          color: ${props => props.theme.color.red800};
           &:focus {
             box-shadow: ${props => props.theme.shadow.outlineDanger};
-            color: ${props => props.theme.color.red800};
           }
         `;
       default:
