@@ -5,10 +5,10 @@ export const StyledTypography = css`
     props.color === "dark"
       ? props.theme.color.textDark
       : "gray"
-      ? props.theme.color.textGray
+      ? props.theme.color.gray700
       : "light"
-      ? props.theme.color.textLight
-      : props.theme.color.textLight};
+      ? props.theme.color.gray600
+      : props.theme.color.gray600};
   font-weight: ${props =>
     props.weight === "bold" ? "700" : "semibold" ? "500" : "400"};
   ${props => {

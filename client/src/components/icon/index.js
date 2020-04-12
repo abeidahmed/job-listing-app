@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Svg = styled.svg`
-  width: ${props => (props.width ? `${props.width}` : "24px")};
-  height: ${props => (props.height ? `${props.height}` : "24px")};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: ${props => (props.width ? `${props.width}px` : "24px")};
+  height: ${props => (props.height ? `${props.height}px` : "24px")};
 `;
 
 const Glyph = ({ glyph, color }) => {
@@ -60,10 +63,10 @@ const Glyph = ({ glyph, color }) => {
   }
 };
 
-const Icon = ({ glyph, color }) => {
+const Icon = ({ glyph, color, height, width }) => {
   console.log(color);
   return (
-    <Svg viewBox="0 0 24 24" fill="none">
+    <Svg viewBox="0 0 24 24" fill="none" height={height} width={width}>
       <Glyph fill="none" color={color} glyph={glyph} />
     </Svg>
   );
