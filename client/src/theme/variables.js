@@ -15,9 +15,7 @@ export const theme = {
     red800: "#9B2C2C",
     blue600: "#0069ff",
     blue700: "#1633ff",
-    textDark: "#031B4E",
-    textGray: "rgba(3,27,78,.7)",
-    textLight: "rgba(3,27,78,.5)"
+    textDark: "#031B4E"
   },
   shadow: {
     small: "0 1px 3px 0 rgba(0, 0, 0, 0.1) , 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
