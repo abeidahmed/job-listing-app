@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { breakpoint } from "../../utils/breakpoint";
+import { breakpoint } from "utils/breakpoint";
 
 export const Col = styled.div`
   padding-right: ${props => props.gap};

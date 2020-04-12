@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "../views/home";
-import Register from "../views/register";
+import Home from "views/home";
+import Register from "views/register";
 
 const PublicRouter = () => {
   return (

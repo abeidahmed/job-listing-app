@@ -1,6 +1,6 @@
 import React from "react";
-import { StyledButton } from "../../../components/button";
-import Icon from "../../../components/icon";
+import { StyledButton } from "components/button";
+import Icon from "components/icon";
 import { ButtonContainer } from "./style";
 
 const SocialButton = () => {

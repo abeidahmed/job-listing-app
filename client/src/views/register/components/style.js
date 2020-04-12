@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { breakpoint } from "../../../utils/breakpoint";
+import { breakpoint } from "utils/breakpoint";
 import BgImage from "./building.jpg";
-import { InputField } from "../../../components/field";
+import { InputField } from "components/field";
 
 // header
 export const StyledSpan = styled.span`

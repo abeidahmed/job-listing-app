@@ -1,5 +1,5 @@
 import React from "react";
-import { H1, Para } from "../../../components/typography";
+import { H1, Para } from "components/typography";
 import { StyledSpan } from "./style";
 
 const Header = () => {
