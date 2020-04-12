@@ -1,14 +1,27 @@
 import { css } from "styled-components";
 
 export const StyledTypography = css`
-  color: ${props =>
-    props.color === "dark"
-      ? props.theme.color.textDark
-      : "gray"
-      ? props.theme.color.gray700
-      : "light"
-      ? props.theme.color.gray600
-      : props.theme.color.gray600};
+  ${props => {
+    switch (props.color) {
+      case "dark":
+        return css`
+          color: ${props => props.theme.color.textDark};
+        `;
+      case "gray":
+        return css`
+          color: ${props.theme.color.gray600};
+        `;
+      case "gray-light":
+        return css`
+          ${props.theme.color.gray500}
+        `;
+      default:
+        return css`
+          ${props.theme.color.gray700}
+        `;
+    }
+  }}
+  
   font-weight: ${props =>
     props.weight === "bold" ? "700" : "semibold" ? "500" : "400"};
   ${props => {
