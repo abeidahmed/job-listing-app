@@ -37,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
                   Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
                   "Noto Color Emoji";
     color: ${props => props.theme.color.gray800};
-    font-weight: normal;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -50,6 +50,6 @@ export const GlobalStyle = createGlobalStyle`
   h5,
   h6 {
     font-size: 1rem;
-    font-weight: normal;
+    font-weight: 400;
   }
 `;

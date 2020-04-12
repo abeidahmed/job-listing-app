@@ -13,7 +13,7 @@ const Button = css`
   transition: 150ms all ease-in;
   white-space: nowrap;
 
- 
+  ${props => props.block && "width: 100%"};
 
   ${props => {
     switch (props.size) {
@@ -32,7 +32,7 @@ const Button = css`
           height: 42px;
         `;
     }
-  }}
+  }};
 
   ${props => {
     switch (props.type) {
@@ -77,7 +77,7 @@ const Button = css`
           color: ${props => props.theme.color.gray800};
         `;
     }
-  }}
+  }};
 
   ${props =>
     props.iconOnly &&

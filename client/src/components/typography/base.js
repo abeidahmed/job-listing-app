@@ -13,17 +13,36 @@ export const StyledTypography = css`
         `;
       case "gray-light":
         return css`
-          ${props.theme.color.gray500}
+          color: ${props.theme.color.gray500};
+        `;
+      case "gray-lightest":
+        return css`
+          color: ${props.theme.color.gray400};
         `;
       default:
         return css`
-          ${props.theme.color.gray700}
+          color: ${props.theme.color.gray700};
+        `;
+    }
+  }};
+
+  ${props => {
+    switch (props.weight) {
+      case "bold":
+        return css`
+          font-weight: 700;
+        `;
+      case "medium":
+        return css`
+          font-weight: 500;
+        `;
+      default:
+        return css`
+          font-weight: 400;
         `;
     }
   }}
-  
-  font-weight: ${props =>
-    props.weight === "bold" ? "700" : "semibold" ? "500" : "400"};
+
   ${props => {
     switch (props.size) {
       case "xs": {
