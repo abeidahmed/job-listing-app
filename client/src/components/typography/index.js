@@ -1,14 +1,4 @@
-import styled from "styled-components";
-import { StyledTypography } from "./base";
-
-export const H1 = styled.h1`
-  ${StyledTypography}
-`;
-
-export const H2 = styled.h2`
-  ${StyledTypography}
-`;
-
-export const H3 = styled.h3`
-  ${StyledTypography}
-`;
+import { H1, H2, H3 } from "./title";
+import { Para } from "./paragraph";
+import { Span } from "./span";
+export { H1, H2, H3, Para, Span };

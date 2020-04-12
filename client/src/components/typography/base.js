@@ -1,7 +1,16 @@
 import { css } from "styled-components";
 
 export const StyledTypography = css`
-  color: ${props => (props.color ? `${props.color}` : props.theme.color.gray700)};
+  color: ${props =>
+    props.color === "dark"
+      ? props.theme.color.textDark
+      : "gray"
+      ? props.theme.color.textGray
+      : "light"
+      ? props.theme.color.textLight
+      : props.theme.color.textLight};
+  font-weight: ${props =>
+    props.weight === "bold" ? "700" : "semibold" ? "500" : "400"};
   ${props => {
     switch (props.size) {
       case "xs": {
@@ -28,61 +37,29 @@ export const StyledTypography = css`
           line-height: 28px;
         `;
       }
-    }
-  }}
-
-  /* font-size: ${props => {
-    switch (props.size) {
-      case "xs": {
-        return "12px";
-      }
-      case "sm": {
-        return "14px";
-      }
-      case "base": {
-        return "16px";
-      }
-      case "lg": {
-        return "20px";
-      }
       case "xl": {
-        return "24px";
+        return css`
+          font-size: 24px;
+          line-height: 32px;
+        `;
       }
       case "2xl": {
-        return "30px";
+        return css`
+          font-size: 30px;
+          line-height: 38px;
+        `;
       }
       case "3xl": {
-        return "36px";
+        return css`
+          font-size: 36px;
+          line-height: 38px;
+        `;
       }
       default:
-        return "16px";
+        return css`
+          font-size: 16px;
+          line-height: 24px;
+        `;
     }
   }};
-  line-height: ${props => {
-    switch (props.size) {
-      case "xs": {
-        return "20px";
-      }
-      case "sm": {
-        return "22px";
-      }
-      case "base": {
-        return "24px";
-      }
-      case "lg": {
-        return "28px";
-      }
-      case "xl": {
-        return "32px";
-      }
-      case "2xl": {
-        return "38px";
-      }
-      case "3xl": {
-        return "38px";
-      }
-      default:
-        return "24px";
-    }
-  }}; */
 `;
