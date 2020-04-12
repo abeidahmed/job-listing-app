@@ -1,21 +1,12 @@
 import styled from "styled-components";
-import { breakpoint } from "utils/breakpoint";
 import BgImage from "./building.jpg";
+import { breakpoint } from "utils/breakpoint";
+import { Col } from "components/layout";
 import { InputField } from "components/field";
 
 // header
 export const StyledSpan = styled.span`
   color: ${props => props.theme.color.blue600};
-`;
-
-// social button
-export const ButtonContainer = styled.div`
-  display: flex;
-  margin: 20px -6px;
-  > div {
-    padding: 0 6px;
-    width: 100%;
-  }
 `;
 
 // form
@@ -42,22 +33,17 @@ export const InputWrapper = styled(InputField)`
 `;
 
 // right content
-export const RightSide = styled.div`
+export const RightSide = styled(Col)`
   display: none;
   ${breakpoint.lg`
-    display: block;
-    width: 60%;
-`}
+    display: block
+  `};
 `;
 
 export const ImageWrapper = styled.div`
-  display: none;
-  ${breakpoint.lg`
-    display: block;
-    background-image: url(${BgImage});
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-  `}
+  background-image: url(${BgImage});
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 `;

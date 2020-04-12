@@ -1,15 +1,16 @@
 import React from "react";
+import { Col } from "components/layout";
 import { Span } from "components/typography";
 import Form from "./components/form";
 import Header from "./components/header";
 import RightContent from "./components/rightContent";
 import SocialButton from "./components/socialButton";
-import { Main, LeftSide, LeftInner, Divider } from "./style";
+import { Main, LeftInner, Divider } from "./style";
 
 const Register = () => {
   return (
     <Main>
-      <LeftSide>
+      <Col width="100%" lg="40%">
         <LeftInner>
           <Header />
           <SocialButton />
@@ -18,7 +19,7 @@ const Register = () => {
           </Divider>
           <Form />
         </LeftInner>
-      </LeftSide>
+      </Col>
       <RightContent />
     </Main>
   );

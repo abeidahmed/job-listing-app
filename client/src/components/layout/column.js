@@ -4,6 +4,7 @@ import { breakpoint } from "utils/breakpoint";
 export const Col = styled.div`
   padding-right: ${props => props.gap};
   padding-left: ${props => props.gap};
+  width: 100%;
   max-width: ${props => props.width};
 
   ${props =>

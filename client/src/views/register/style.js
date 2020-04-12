@@ -7,13 +7,6 @@ export const Main = styled.main`
   width: 100%;
 `;
 
-export const LeftSide = styled.div`
-  width: 100%;
-  ${breakpoint.lg`
-    width: 40%;
-  `}
-`;
-
 export const LeftInner = styled.div`
   margin-left: auto;
   margin-right: auto;
@@ -34,6 +27,7 @@ export const Divider = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
+  margin: 20px 0;
   &::before,
   &::after {
     content: "";

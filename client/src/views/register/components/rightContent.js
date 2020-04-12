@@ -3,7 +3,7 @@ import { RightSide, ImageWrapper } from "./style";
 
 const RightContent = () => {
   return (
-    <RightSide>
+    <RightSide lg="60%">
       <ImageWrapper></ImageWrapper>
     </RightSide>
   );
