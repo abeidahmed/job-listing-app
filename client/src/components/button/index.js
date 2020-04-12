@@ -11,6 +11,7 @@ const Button = css`
   user-select: none;
   cursor: pointer;
   transition: 150ms all ease-in;
+  white-space: nowrap;
 
   ${props =>
     props.icon &&

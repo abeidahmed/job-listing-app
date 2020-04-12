@@ -60,11 +60,12 @@ const Glyph = ({ glyph, color }) => {
           />
         </g>
       );
+    default:
+      return null;
   }
 };
 
 const Icon = ({ glyph, color, height, width }) => {
-  console.log(color);
   return (
     <Svg viewBox="0 0 24 24" fill="none" height={height} width={width}>
       <Glyph fill="none" color={color} glyph={glyph} />

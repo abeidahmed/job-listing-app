@@ -6,6 +6,7 @@ import { theme, GlobalStyle } from "./theme";
 import { H1, H2, H3 } from "./components/typography";
 import { StyledButton } from "./components/button";
 import Icon from "./components/icon";
+import { InputField } from "./components/field";
 
 function App() {
   return (
@@ -30,16 +31,22 @@ function App() {
         </StyledButton>
         <br />
         <br />
-        <StyledButton type="bordered" icon>
-          <Icon color="red" glyph="dollar" height="20" width="20" />
-          Button
-        </StyledButton>
+        <div style={{ display: "flex" }}>
+          <StyledButton type="bordered" icon>
+            <Icon color="red" glyph="dollar" height="20" width="20" />
+            Button
+          </StyledButton>
+          <InputField type="primary" placeholder="Search..." />
+        </div>
         <StyledButton type="bordered">
           <Icon color="red" glyph="dollar" height="20" width="20" />
         </StyledButton>
-        <StyledButton type="bordered" isLink>
-          <a href="https://google.com">hello world</a>
-        </StyledButton>
+        <div style={{ display: "flex" }}>
+          <StyledButton type="bordered" size="sm" isLink>
+            <a href="https://google.com">hello world</a>
+          </StyledButton>
+          <InputField size="sm" type="danger" placeholder="Search..." />
+        </div>
       </div>
     </ThemeProvider>
   );
