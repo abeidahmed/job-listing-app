@@ -38,7 +38,7 @@ function App() {
           </StyledButton>
           <InputField type="primary" placeholder="Search..." />
         </div>
-        <StyledButton type="bordered">
+        <StyledButton type="bordered" iconOnly>
           <Icon color="red" glyph="dollar" height="20" width="20" />
         </StyledButton>
         <div style={{ display: "flex" }}>

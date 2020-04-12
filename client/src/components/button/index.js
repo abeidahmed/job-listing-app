@@ -13,29 +13,22 @@ const Button = css`
   transition: 150ms all ease-in;
   white-space: nowrap;
 
-  ${props =>
-    props.icon &&
-    css`
-      svg {
-        margin-right: 4px;
-        margin-top: -4px;
-      }
-    `}
+ 
 
   ${props => {
     switch (props.size) {
       case "sm":
         return css`
           font-size: 14px;
-          line-height: 24px;
-          padding: 7px 16px;
+          line-height: 22px;
+          padding: 6px 16px;
           height: 36px;
         `;
       default:
         return css`
           font-size: 16px;
-          line-height: 26px;
-          padding: 9px 16px;
+          line-height: 24px;
+          padding: 8px 16px;
           height: 42px;
         `;
     }
@@ -85,6 +78,21 @@ const Button = css`
         `;
     }
   }}
+
+  ${props =>
+    props.iconOnly &&
+    css`
+      padding-left: 10px;
+      padding-right: 10px;
+    `}
+
+  ${props =>
+    props.icon &&
+    css`
+      svg {
+        margin-right: 4px;
+      }
+    `}
 `;
 
 export const StyledButton = styled.button`
