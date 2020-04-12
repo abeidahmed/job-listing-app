@@ -1,20 +1,21 @@
 import React from "react";
 import { StyledButton } from "../../../components/button";
+import { Col, Row } from "../../../components/layout";
 import { FormWrapper, FormRow, Label, InputWrapper } from "./style";
 
 const Form = () => {
   return (
     <FormWrapper>
-      <FormRow>
-        <div>
+      <Row gap="6px">
+        <Col gap="6px" width="50%">
           <Label htmlFor="firstName__signup">First name</Label>
           <InputWrapper id="firstName__signup" type="text" />
-        </div>
-        <div>
+        </Col>
+        <Col gap="6px" width="50%">
           <Label htmlFor="lastName__signup">Last name</Label>
           <InputWrapper id="lastName__signup" type="text" />
-        </div>
-      </FormRow>
+        </Col>
+      </Row>
       <div>
         <Label htmlFor="email__signup">Email address</Label>
         <InputWrapper id="email__signup" type="email" />
