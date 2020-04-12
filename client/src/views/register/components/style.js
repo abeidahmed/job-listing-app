@@ -41,16 +41,6 @@ export const InputWrapper = styled(InputField)`
   margin-top: 4px;
 `;
 
-export const FormRow = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 0 -6px;
-
-  > div {
-    padding: 0 6px;
-  }
-`;
-
 // right content
 export const RightSide = styled.div`
   display: none;

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledButton } from "../../../components/button";
 import { Col, Row } from "../../../components/layout";
-import { FormWrapper, FormRow, Label, InputWrapper } from "./style";
+import { FormWrapper, Label, InputWrapper } from "./style";
 
 const Form = () => {
   return (
