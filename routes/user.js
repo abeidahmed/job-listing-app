@@ -1,5 +1,6 @@
 const express = require("express");
 const router = new express.Router();
+const auth = require("../middleware/auth");
 const User = require("../models/user");
 
 // @type POST
@@ -28,6 +29,20 @@ router.post("/api/v1/login", async (req, res) => {
     res.send({ user, token });
   } catch (err) {
     res.status(404).send(err.message);
+  }
+});
+
+// @type POST
+// @description Logout user
+router.post("/api/v1/logout", auth, async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter(token => {
+      return token.token !== req.token;
+    });
+    await req.user.save();
+    res.send();
+  } catch (err) {
+    res.status(500).send();
   }
 });
 
