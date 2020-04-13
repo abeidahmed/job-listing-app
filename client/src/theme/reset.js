@@ -52,4 +52,12 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1rem;
     font-weight: 400;
   }
+
+  button {
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+  }
 `;

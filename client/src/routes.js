@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import { store } from "store";
 import { theme, GlobalStyle } from "./theme";
-import AdminRouter from "admin/views/routes/admin-router";
+import AdminRouter from "admin/routes/admin-router";
 import PublicRouter from "routes/publicRouter";
 
 const Routes = () => {
