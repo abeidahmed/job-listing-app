@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Links from "./components/links";
 import Header from "./components/header";
 
-const Main = styled.main`
+const Main = styled.aside`
   max-width: 230px;
   width: 100%;
   height: 100vh;
