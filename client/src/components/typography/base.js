@@ -19,6 +19,10 @@ export const StyledTypography = css`
         return css`
           color: ${props.theme.color.gray400};
         `;
+      case "danger":
+        return css`
+          color: ${props.theme.color.red600};
+        `;
       default:
         return css`
           color: ${props.theme.color.gray700};
