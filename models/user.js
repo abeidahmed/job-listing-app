@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       trim: true,
+      unique: true,
       lowercase: true,
       required: [true, "Email is required"],
       validate(email) {
@@ -44,10 +45,10 @@ const userSchema = new mongoose.Schema(
 );
 
 // validate email uniqueness
-userSchema.path("email").validate(async email => {
-  const emailCount = await User.countDocuments({ email });
-  if (emailCount) throw new Error("Email already exists");
-});
+// userSchema.path("email").validate(async value => {
+//   const emailCount = await User.countDocuments({ email: value });
+//   return !emailCount;
+// }, "Email already exists");
 
 // remove unnecessary data from the user object
 userSchema.methods.toJSON = function() {
