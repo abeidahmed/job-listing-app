@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { postUserAction } from "actions/user-action";
 import { Col, Row } from "components/layout";
 import { fieldValidation } from "helpers/field-validation";
 import { Para } from "components/typography";
 import { StyledButton } from "components/button";
 import { FormWrapper, Label, InputWrapper } from "./style";
 
-const Form = () => {
+const Form = props => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,6 +30,7 @@ const Form = () => {
       )
       .then(res => {
         if (res.status === 201) {
+          props.postData(res.data.user);
           setIsLoading(false);
         }
       })
@@ -108,4 +111,13 @@ const Form = () => {
   );
 };
 
-export default Form;
+const mapDispatchToProps = dispatch => {
+  return {
+    postData: userData => dispatch(postUserAction(userData))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Form);
