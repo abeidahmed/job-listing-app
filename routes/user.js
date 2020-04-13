@@ -5,6 +5,7 @@ const User = require("../models/user");
 
 // @type POST
 // @description Signup user
+// @access PUBLIC
 router.post("/api/v1/signup", async (req, res) => {
   const user = new User(req.body);
 
@@ -20,6 +21,7 @@ router.post("/api/v1/signup", async (req, res) => {
 
 // @type POST
 // @description Login user
+// @access PUBLIC
 router.post("/api/v1/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -34,6 +36,7 @@ router.post("/api/v1/login", async (req, res) => {
 
 // @type POST
 // @description Logout user
+// @access PRIVATE
 router.post("/api/v1/logout", auth, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter(token => {
@@ -48,6 +51,7 @@ router.post("/api/v1/logout", auth, async (req, res) => {
 
 // @type POST
 // @description Logout user from all instances
+// @access PRIVATE
 router.post("api/v1/logoutAll", auth, async (req, res) => {
   try {
     req.user.tokens = [];
