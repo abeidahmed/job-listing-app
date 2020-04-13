@@ -46,4 +46,16 @@ router.post("/api/v1/logout", auth, async (req, res) => {
   }
 });
 
+// @type POST
+// @description Logout user from all instances
+router.post("api/v1/logoutAll", auth, async (req, res) => {
+  try {
+    req.user.tokens = [];
+    await req.user.save();
+    res.send();
+  } catch (err) {
+    res.status(500).send();
+  }
+});
+
 module.exports = router;
