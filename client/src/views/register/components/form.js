@@ -72,6 +72,7 @@ const Form = () => {
         <InputWrapper
           id="email__signup"
           type="email"
+          required
           color={fieldValidation(error, "email") && "danger"}
           value={email}
           onChange={e => setEmail(e.target.value)}
@@ -87,6 +88,7 @@ const Form = () => {
         <InputWrapper
           id="password__signup"
           type="password"
+          required
           color={fieldValidation(error, "password") && "danger"}
           value={password}
           onChange={e => setPassword(e.target.value)}
