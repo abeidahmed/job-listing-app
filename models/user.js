@@ -44,8 +44,8 @@ const userSchema = new mongoose.Schema(
 );
 
 // validate email uniqueness
-userSchema.path("email").validate(async value => {
-  const emailCount = await User.countDocuments({ email: value });
+userSchema.path("email").validate(async email => {
+  const emailCount = await User.countDocuments({ email });
   if (emailCount) throw new Error("Email already exists");
 });
 
