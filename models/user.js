@@ -66,6 +66,18 @@ userSchema.methods.generateAuthToken = async function() {
   return token;
 };
 
+// find user by credentials
+userSchema.statics.findByCredentials = async function(email, password) {
+  const user = await User.findOne({ email });
+  if (!user) throw new Error("Unable to login!");
+
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) throw new Error("Unable to login!");
+
+  return user;
+};
+
 // hash password before saving the user
 userSchema.pre("save", async function(next) {
   const user = this;
