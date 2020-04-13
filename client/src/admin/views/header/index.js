@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { AvatarWithText } from "components/avatar";
 import { PillWithNumber } from "components/pill";
 import { Search } from "components/search";
