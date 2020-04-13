@@ -28,7 +28,7 @@ export const InputField = styled.input`
   }}
 
   ${props => {
-    switch (props.type) {
+    switch (props.color) {
       case "danger":
         return css`
           border-color: ${props => props.theme.color.red600};

@@ -17,10 +17,9 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      unique: true,
       trim: true,
       lowercase: true,
-      required: true,
+      required: [true, "Email is required"],
       validate(email) {
         if (!validator.isEmail(email)) {
           throw new Error("Invalid email address.");
@@ -29,8 +28,8 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
-      minlength: [6, "Password should be greater than 5 characters."]
+      required: [true, "Password is required"],
+      minlength: [6, "Password is too short. (min 6 chars)"]
     },
     tokens: [
       {
@@ -43,6 +42,12 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// validate email uniqueness
+userSchema.path("email").validate(async value => {
+  const emailCount = await User.countDocuments({ email: value });
+  if (emailCount) throw new Error("Email already exists");
+});
 
 // remove unnecessary data from the user object
 userSchema.methods.toJSON = function() {
