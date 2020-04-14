@@ -5,7 +5,6 @@ import { pageHeadAction } from "actions/page-head";
 import { AdminContainer } from "components/layout";
 import Icon from "components/icon";
 import { Pagination } from "components/pagination";
-import { Para, Span } from "components/typography";
 import { Search } from "components/search";
 import { StyledButton } from "components/button";
 import { Table, Th, Tbody, Td, Tr } from "components/table";
