@@ -60,4 +60,9 @@ export const GlobalStyle = createGlobalStyle`
     background: none;
     border: none;
   }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
 `;

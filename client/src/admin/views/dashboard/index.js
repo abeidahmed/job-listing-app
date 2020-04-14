@@ -2,10 +2,14 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { pageHeadAction } from "actions/page-head";
 
-const Dashboard = props => {
+const Dashboard = ({ pageHead }) => {
   useEffect(() => {
-    props.setPageHead("Dashboard");
-  }, []);
+    const sendTitle = title => {
+      pageHead(title);
+    };
+
+    sendTitle("Dashboard");
+  }, [pageHead]);
 
   return (
     <div>
@@ -16,7 +20,7 @@ const Dashboard = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPageHead: value => dispatch(pageHeadAction(value))
+    pageHead: value => dispatch(pageHeadAction(value))
   };
 };
 
