@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { breakpoint } from "utils/breakpoint";
+import { StyledButton } from "components/button";
 import { zIndex } from "helpers/z-index";
 
 export const StyledHeader = styled.header`
@@ -20,15 +21,12 @@ export const Wrapper = styled.div`
   > svg {
     margin-left: -2px;
   }
+`;
 
-  > button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    ${breakpoint.lg`
+export const OpenButton = styled(StyledButton)`
+  ${breakpoint.lg`
       display: none;
     `}
-  }
 `;
 
 export const SearchWrapper = styled.div`

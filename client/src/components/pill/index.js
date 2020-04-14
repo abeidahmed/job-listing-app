@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Icon from "components/icon";
+import { StyledButton } from "components/button";
 
-const NotificationButton = styled.button`
+const NotificationButton = styled(StyledButton)`
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 
   > span {
     display: flex;
@@ -26,7 +24,7 @@ const NotificationButton = styled.button`
 
 export const PillWithNumber = ({ glyph, number }) => {
   return (
-    <NotificationButton>
+    <NotificationButton color="iconPrimary" iconOnlyPrimary>
       <Icon glyph={glyph} />
       <span>{number}</span>
     </NotificationButton>

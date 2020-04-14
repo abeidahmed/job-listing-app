@@ -5,15 +5,15 @@ import { AvatarWithText } from "components/avatar";
 import { PillWithNumber } from "components/pill";
 import Icon from "components/icon";
 import { Search } from "components/search";
-import { StyledHeader, Nav, Wrapper, SearchWrapper } from "./style";
+import { OpenButton, StyledHeader, Nav, Wrapper, SearchWrapper } from "./style";
 
 const Header = props => {
   return (
     <StyledHeader>
       <Wrapper>
-        <button onClick={() => props.openSidebar()}>
+        <OpenButton iconOnlyPrimary color="iconPrimary" onClick={() => props.openSidebar()}>
           <Icon glyph="menu-right" />
-        </button>
+        </OpenButton>
         <SearchWrapper>
           <Search placeholder="Search" />
         </SearchWrapper>

@@ -35,7 +35,7 @@ const Button = css`
   }};
 
   ${props => {
-    switch (props.type) {
+    switch (props.color) {
       case "primary":
         return css`
           background-color: ${props => props.theme.color.blue600};
@@ -71,6 +71,18 @@ const Button = css`
               }
             `}
         `;
+      case "iconPrimary":
+        return css`
+          background-color: transparent;
+          height: auto;
+          margin: -4px;
+          &:hover {
+            background-color: ${props => props.theme.color.gray100};
+          }
+          &:focus {
+            background-color: ${props => props.theme.color.gray200};
+          }
+        `;
       default:
         return css`
           background-color: ${props => props.theme.color.gray300};
@@ -84,6 +96,13 @@ const Button = css`
     css`
       padding-left: 10px;
       padding-right: 10px;
+    `};
+
+  ${props =>
+    props.iconOnlyPrimary &&
+    css`
+      padding: 4px;
+      border-radius: 99999px;
     `}
 
   ${props =>
@@ -92,7 +111,7 @@ const Button = css`
       svg {
         margin-right: 4px;
       }
-    `}
+    `};
 `;
 
 export const StyledButton = styled.button`

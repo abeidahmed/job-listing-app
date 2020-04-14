@@ -103,7 +103,7 @@ const Form = props => {
         )}
       </div>
       <div>
-        <StyledButton type="primary" block disabled={isLoading}>
+        <StyledButton color="primary" block disabled={isLoading}>
           {isLoading ? "Creating an account..." : "Create an account"}
         </StyledButton>
       </div>
