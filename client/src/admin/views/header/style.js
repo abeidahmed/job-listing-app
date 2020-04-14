@@ -1,5 +1,17 @@
 import styled from "styled-components";
 import { breakpoint } from "utils/breakpoint";
+import { zIndex } from "helpers/z-index";
+
+export const StyledHeader = styled.header`
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid ${props => props.theme.color.gray200};
+  padding: 0 24px;
+  background-color: white;
+  z-index: ${zIndex.header};
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -25,15 +37,6 @@ export const SearchWrapper = styled.div`
     display: block;
     width: 100%;
   `}
-`;
-
-export const StyledHeader = styled.header`
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid ${props => props.theme.color.gray200};
-  padding: 0 24px;
 `;
 
 export const Nav = styled.nav`
