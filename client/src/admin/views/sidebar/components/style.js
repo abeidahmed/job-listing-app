@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { breakpoint } from "utils/breakpoint";
+import { StyledButton } from "components/button";
 
 // header
 export const HeaderWrapper = styled.header`
@@ -12,12 +13,12 @@ export const HeaderWrapper = styled.header`
     height: 32px;
     width: auto;
   }
+`;
 
-  > button {
-    ${breakpoint.lg`
+export const CloseButton = styled(StyledButton)`
+  ${breakpoint.lg`
       display: none;
-    `}
-  }
+  `}
 `;
 
 // links
