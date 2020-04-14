@@ -1,13 +1,23 @@
 import React from "react";
+import { connect } from "react-redux";
+import { openSidebar } from "actions/sidebar-action";
 import { AvatarWithText } from "components/avatar";
 import { PillWithNumber } from "components/pill";
+import Icon from "components/icon";
 import { Search } from "components/search";
-import { StyledHeader, Nav } from "./style";
+import { StyledHeader, Nav, Wrapper, SearchWrapper } from "./style";
 
-const Header = () => {
+const Header = props => {
   return (
     <StyledHeader>
-      <Search placeholder="Search" />
+      <Wrapper>
+        <button onClick={() => props.openSidebar()}>
+          <Icon glyph="menu-right" />
+        </button>
+        <SearchWrapper>
+          <Search placeholder="Search" />
+        </SearchWrapper>
+      </Wrapper>
       <Nav>
         <PillWithNumber glyph="bell" number="5" />
         <AvatarWithText
@@ -19,4 +29,13 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapDispatchToProps = dispatch => {
+  return {
+    openSidebar: () => dispatch(openSidebar())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);
