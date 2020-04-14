@@ -12,7 +12,7 @@ const Header = props => {
     <StyledHeader>
       <Wrapper>
         <OpenButton iconOnlyPrimary color="iconPrimary" onClick={() => props.openSidebar()}>
-          <Icon glyph="menu-right" />
+          <Icon glyph="menu-left" color="#374151" />
         </OpenButton>
         <HeadTextWrapper>
           <H1 color="dark" size="lg">

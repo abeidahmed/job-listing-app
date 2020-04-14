@@ -10,7 +10,7 @@ const Header = props => {
     <HeaderWrapper>
       <img src={LogoFull} alt="Logo-full" />
       <CloseButton iconOnlyPrimary color="iconPrimary" onClick={() => props.closeSidebar()}>
-        <Icon glyph="close" />
+        <Icon glyph="close" color="#374151" />
       </CloseButton>
     </HeaderWrapper>
   );

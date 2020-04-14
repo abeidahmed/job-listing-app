@@ -142,10 +142,10 @@ const Glyph = ({ glyph, color = "#9FA6B2" }) => {
           />
         </g>
       );
-    case "menu-right":
+    case "menu-left":
       return (
         <g>
-          <path fill={color} d="M4 6H20V8H4V6ZM8 11H20V13H8V11ZM13 16H20V18H13V16Z" />
+          <path fill={color} d="M4 11H16V13H4V11ZM4 6H20V8H4V6ZM4 18H11H11.235V16H11H4V18Z" />
         </g>
       );
     case "search":
