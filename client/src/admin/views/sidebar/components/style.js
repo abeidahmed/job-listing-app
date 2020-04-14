@@ -6,8 +6,10 @@ import { StyledButton } from "components/button";
 export const HeaderWrapper = styled.header`
   height: 64px;
   display: flex;
+  padding: 0 24px;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
 
   > img {
     height: 32px;
@@ -24,6 +26,9 @@ export const CloseButton = styled(StyledButton)`
 // links
 export const Nav = styled.nav`
   margin: 12px 0;
+  flex: 1;
+  padding: 0 24px;
+  overflow-y: auto;
 `;
 
 export const LinkWrapper = styled.a`
