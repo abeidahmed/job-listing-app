@@ -3,9 +3,11 @@ const router = new express.Router();
 const auth = require("../middleware/auth");
 const User = require("../models/user");
 
-// @type POST
-// @description Signup user
-// @access PUBLIC
+/**
+ * @type POST
+ * @description Signup user
+ * @access PUBLIC
+ */
 router.post("/api/v1/signup", async (req, res) => {
   const user = new User(req.body);
 
@@ -19,9 +21,11 @@ router.post("/api/v1/signup", async (req, res) => {
   }
 });
 
-// @type POST
-// @description Login user
-// @access PUBLIC
+/**
+ * @type POST
+ * @description Login user
+ * @access PUBLIC
+ */
 router.post("/api/v1/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -34,9 +38,25 @@ router.post("/api/v1/login", async (req, res) => {
   }
 });
 
-// @type POST
-// @description Logout user
-// @access PRIVATE
+/**
+ * @type GET
+ * @description Fetch all the users
+ * @access PUBLIC
+ */
+router.get("/api/v1/allUsers", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.send(users);
+  } catch (err) {
+    res.status(500).send();
+  }
+});
+
+/**
+ * @type POST
+ * @description Logout user
+ * @access PRIVATE
+ */
 router.post("/api/v1/logout", auth, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter(token => {
@@ -49,9 +69,11 @@ router.post("/api/v1/logout", auth, async (req, res) => {
   }
 });
 
-// @type POST
-// @description Logout user from all instances
-// @access PRIVATE
+/**
+ * @type POST
+ * @description Logout user from all instances
+ * @access PRIVATE
+ */
 router.post("api/v1/logoutAll", auth, async (req, res) => {
   try {
     req.user.tokens = [];

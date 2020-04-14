@@ -55,7 +55,7 @@ const Button = css`
         `;
       case "bordered":
         return css`
-          background-color: transparent;
+          background-color: white;
           color: ${props => props.theme.color.gray800};
           border-color: ${props => props.theme.color.gray300};
           &:hover,
