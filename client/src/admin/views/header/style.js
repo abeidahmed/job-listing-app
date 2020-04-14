@@ -29,7 +29,7 @@ export const OpenButton = styled(StyledButton)`
     `}
 `;
 
-export const SearchWrapper = styled.div`
+export const HeadTextWrapper = styled.div`
   display: none;
   ${breakpoint.lg`
     display: block;

@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { openSidebar } from "actions/sidebar-action";
 import { AvatarWithText } from "components/avatar";
+import { H1 } from "components/typography";
 import { PillWithNumber } from "components/pill";
 import Icon from "components/icon";
-import { Search } from "components/search";
-import { OpenButton, StyledHeader, Nav, Wrapper, SearchWrapper } from "./style";
+import { OpenButton, StyledHeader, Nav, Wrapper, HeadTextWrapper } from "./style";
 
 const Header = props => {
   return (
@@ -14,9 +14,11 @@ const Header = props => {
         <OpenButton iconOnlyPrimary color="iconPrimary" onClick={() => props.openSidebar()}>
           <Icon glyph="menu-right" />
         </OpenButton>
-        <SearchWrapper>
-          <Search placeholder="Search" />
-        </SearchWrapper>
+        <HeadTextWrapper>
+          <H1 color="dark" size="lg">
+            {props.pageHeader}
+          </H1>
+        </HeadTextWrapper>
       </Wrapper>
       <Nav>
         <PillWithNumber glyph="bell" number="5" />
@@ -29,6 +31,12 @@ const Header = props => {
   );
 };
 
+const mapStateToProps = state => {
+  return {
+    pageHeader: state.pageHeadReducer.pageHead
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     openSidebar: () => dispatch(openSidebar())
@@ -36,6 +44,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Header);
