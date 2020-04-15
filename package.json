@@ -8,7 +8,8 @@
     "start": "node index.js",
     "server": "env-cmd -f ./config/dev.env nodemon index.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "env-cmd -f ./config/test.env jest --watch --runInBand"
   },
   "author": "Abeid Ahmed",
   "license": "MIT",
