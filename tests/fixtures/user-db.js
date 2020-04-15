@@ -6,7 +6,8 @@ const userOneId = new mongoose.Types.ObjectId();
 
 const userOne = {
   _id: userOneId,
-  name: "Mike",
+  firstName: "Mike",
+  lastName: "Brandon",
   email: "mike@example.com",
   password: "hellomama",
   tokens: [
