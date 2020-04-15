@@ -12,7 +12,10 @@ const userOne = {
   password: "hellomama",
   tokens: [
     {
-      token: jwt.sign({ _id: userOneId }, process.env.JWT_SECRET)
+      token: jwt.sign({ _id: userOneId }, process.env.AUTH_SECRET_KEY)
+    },
+    {
+      token: jwt.sign({ _id: new mongoose.Types.ObjectId() }, process.env.AUTH_SECRET_KEY)
     }
   ]
 };

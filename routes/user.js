@@ -88,7 +88,7 @@ router.post("/api/v1/logout", auth, async (req, res) => {
  * @description Logout user from all instances
  * @access PRIVATE
  */
-router.post("api/v1/logoutAll", auth, async (req, res) => {
+router.post("/api/v1/logoutAll", auth, async (req, res) => {
   try {
     req.user.tokens = [];
     await req.user.save();
