@@ -5,6 +5,7 @@ const Main = styled.main`
   background-color: ${props => props.theme.color.gray50};
   padding: 24px;
   min-height: calc(100vh - 113px);
+  position: relative;
 `;
 
 export const AdminContainer = ({ children }) => {

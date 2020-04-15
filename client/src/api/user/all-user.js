@@ -13,5 +13,5 @@ export const fetchAllUsers = () => (dispatch, getState) => {
       dispatch(isLoadingWhileUsersFetch());
       dispatch(getAllUsersAction(res.data));
     })
-    .catch(err => dispatch(allUsersFetchError(err)));
+    .catch(err => dispatch(allUsersFetchError(err.message)));
 };
