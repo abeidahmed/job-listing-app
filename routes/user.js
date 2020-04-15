@@ -16,7 +16,6 @@ router.post("/api/v1/signup", async (req, res) => {
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (err) {
-    console.log(err);
     res.status(400).send(err.message);
   }
 });
@@ -56,9 +55,9 @@ router.get("/api/v1/currentUser", auth, async (req, res) => {
 /**
  * @type GET
  * @description Fetch all the users
- * @access PUBLIC
+ * @access PRIVATE
  */
-router.get("/api/v1/allUsers", async (req, res) => {
+router.get("/api/v1/allUsers", auth, async (req, res) => {
   try {
     const users = await User.find();
     res.send(users);
