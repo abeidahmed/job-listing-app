@@ -10,6 +10,7 @@ export const Main = styled.aside`
   background-color: white;
   border-right: 1px solid ${props => props.theme.color.gray200};
   overflow-y: hidden;
+  flex-shrink: 0;
 
   @media (max-width: 991.98px) {
     position: absolute;
