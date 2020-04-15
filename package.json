@@ -11,6 +11,9 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "env-cmd -f ./config/test.env jest --watch --runInBand"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "author": "Abeid Ahmed",
   "license": "MIT",
   "dependencies": {
