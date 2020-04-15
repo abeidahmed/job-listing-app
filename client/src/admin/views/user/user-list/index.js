@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { pageHeadAction } from "actions/page-head";
+import { fetchAllUsers } from "api/user";
 import { AdminContainer } from "components/layout";
 import Icon from "components/icon";
 import { Pagination } from "components/pagination";
@@ -39,14 +40,19 @@ const NameWrapper = styled.div`
   font-weight: 500;
 `;
 
-const UserList = ({ pageHead }) => {
+const UserList = ({ pageHead, fetchAllUsers }) => {
   useEffect(() => {
     const sendTitle = title => {
       pageHead(title);
     };
 
+    const fetchUsers = () => {
+      fetchAllUsers();
+    };
+
     sendTitle("Users");
-  }, [pageHead]);
+    fetchUsers();
+  }, [pageHead, fetchAllUsers]);
 
   return (
     <AdminContainer>
@@ -150,7 +156,8 @@ const UserList = ({ pageHead }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    pageHead: value => dispatch(pageHeadAction(value))
+    pageHead: value => dispatch(pageHeadAction(value)),
+    fetchAllUsers: () => dispatch(fetchAllUsers())
   };
 };
 

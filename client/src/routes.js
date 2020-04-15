@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import { store } from "store";
-import { fetchCurrentUser } from "actions/user-action";
+import { fetchCurrentUser } from "api/user";
 import { theme, GlobalStyle } from "./theme";
 import AdminRouter from "admin/routes/admin-router";
 import PublicRouter from "routes/public-router";
