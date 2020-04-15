@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { openSidebar } from "actions/sidebar-action";
 import { AvatarWithText } from "components/avatar";
 import { H1 } from "components/typography";
 import { PillWithNumber } from "components/pill";
 import Icon from "components/icon";
-import { OpenButton, StyledHeader, Nav, Wrapper, HeadTextWrapper } from "./style";
+import { UserDropdown } from "./components/profile-dropdown";
+import { OpenButton, StyledHeader, Nav, Wrapper, HeadTextWrapper, UserAction } from "./style";
 
 const Header = props => {
+  const [isActive, setIsActive] = useState(false);
   return (
     <StyledHeader>
       <Wrapper>
@@ -22,10 +24,14 @@ const Header = props => {
       </Wrapper>
       <Nav>
         <PillWithNumber glyph="bell" number="5" />
-        <AvatarWithText
-          text="Jennifer"
-          img="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&&facepad=2.5&w=256&h=256&q=80"
-        />
+        <UserAction>
+          <AvatarWithText
+            onClick={() => setIsActive(!isActive)}
+            text="Jennifer"
+            img="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&&facepad=2.5&w=256&h=256&q=80"
+          />
+          <UserDropdown isActive={isActive} />
+        </UserAction>
       </Nav>
     </StyledHeader>
   );

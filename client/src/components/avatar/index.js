@@ -3,9 +3,9 @@ import Icon from "components/icon";
 import { Span } from "components/typography";
 import { StyledAvatar } from "./style";
 
-export const AvatarWithText = ({ img, text }) => {
+export const AvatarWithText = ({ img, text, ...props }) => {
   return (
-    <StyledAvatar>
+    <StyledAvatar {...props}>
       <img src={img} alt={text} />
       <span>
         <Span style={{ paddingLeft: 8 }} size="sm" color="gray">

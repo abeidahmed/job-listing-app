@@ -41,3 +41,7 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
 `;
+
+export const UserAction = styled.div`
+  position: relative;
+`;
