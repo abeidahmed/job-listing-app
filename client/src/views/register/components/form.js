@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { postUserAction } from "actions/user-action";
 import { Col, Row } from "components/layout";
@@ -15,6 +16,8 @@ const Form = ({ postUser }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const history = useHistory();
 
   const postUserData = () => {
     axios
@@ -32,6 +35,12 @@ const Form = ({ postUser }) => {
         if (res.status === 201) {
           postUser(res.data.user, res.data.token);
           setIsLoading(false);
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setPassword("");
+          setError([]);
+          history.push("/");
         }
       })
       .catch(err => {
@@ -43,6 +52,7 @@ const Form = ({ postUser }) => {
   const submitData = async e => {
     e.preventDefault();
     setIsLoading(true);
+    setError([]);
     await postUserData();
   };
 
