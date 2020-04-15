@@ -40,6 +40,21 @@ router.post("/api/v1/login", async (req, res) => {
 
 /**
  * @type GET
+ * @description Get the current user
+ * @access PRIVATE
+ */
+router.get("/api/v1/currentUser", auth, async (req, res) => {
+  try {
+    const user = req.user;
+    const token = req.token;
+    res.send({ user, token });
+  } catch (err) {
+    res.status(500).send();
+  }
+});
+
+/**
+ * @type GET
  * @description Fetch all the users
  * @access PUBLIC
  */

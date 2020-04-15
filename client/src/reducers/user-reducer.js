@@ -1,14 +1,18 @@
 import { POST_USER_DATA } from "actions/types";
 
 const initialState = {
-  user: []
+  currentUser: [],
+  token: localStorage.getItem("token")
 };
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_USER_DATA:
+      localStorage.setItem("token", action.token);
       return {
-        user: action.user
+        ...state,
+        ...action.payload,
+        currentUser: action.payload
       };
     default:
       return state;

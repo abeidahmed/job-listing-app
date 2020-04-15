@@ -8,7 +8,7 @@ import { Para } from "components/typography";
 import { StyledButton } from "components/button";
 import { FormWrapper, Label, InputWrapper } from "./style";
 
-const Form = props => {
+const Form = ({ postUser }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ const Form = props => {
       )
       .then(res => {
         if (res.status === 201) {
-          props.postData(res.data.user);
+          postUser(res.data.user, res.data.token);
           setIsLoading(false);
         }
       })
@@ -113,7 +113,7 @@ const Form = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postData: userData => dispatch(postUserAction(userData))
+    postUser: (userData, token) => dispatch(postUserAction(userData, token))
   };
 };
 
