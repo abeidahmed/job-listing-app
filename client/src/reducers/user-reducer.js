@@ -8,11 +8,11 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_USER_DATA:
-      localStorage.setItem("token", action.token);
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         ...action.payload,
-        currentUser: action.payload
+        currentUser: action.payload.user
       };
     default:
       return state;

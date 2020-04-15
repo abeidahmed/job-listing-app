@@ -4,8 +4,10 @@ import { POST_USER_DATA } from "./types";
 export const postUserAction = (user, token) => {
   return {
     type: POST_USER_DATA,
-    payload: user,
-    token
+    payload: {
+      user,
+      token
+    }
   };
 };
 
@@ -25,8 +27,10 @@ export const fetchCurrentUser = () => (dispatch, getState) => {
     .then(res => {
       dispatch({
         type: POST_USER_DATA,
-        payload: res.data,
-        token: res.data.token
+        payload: {
+          user: res.data.user,
+          token: res.data.token
+        }
       });
     })
     .catch(err => console.log(err));

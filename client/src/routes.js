@@ -10,7 +10,9 @@ import PublicRouter from "routes/public-router";
 
 const Routes = () => {
   useEffect(() => {
-    store.dispatch(fetchCurrentUser());
+    if (store.getState().userReducer.token !== null) {
+      store.dispatch(fetchCurrentUser());
+    }
   }, []);
 
   return (

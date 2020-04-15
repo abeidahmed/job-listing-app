@@ -24,7 +24,7 @@ const Form = ({ postUser }) => {
       )
       .then(res => {
         if (res.status === 200) {
-          postUser(res.data, res.data.token);
+          postUser(res.data.user, res.data.token);
           setIsLoading(false);
         }
       })
