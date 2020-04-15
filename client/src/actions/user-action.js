@@ -12,18 +12,8 @@ export const postUserAction = (user, token) => {
 };
 
 export const fetchCurrentUser = () => (dispatch, getState) => {
-  const token = getState().userReducer.token;
-
-  const config = {
-    headers: {
-      "Content-type": "application/json"
-    }
-  };
-
-  if (token) config.headers["Authorization"] = `Bearer ${token}`;
-
   axios
-    .get("/api/v1/currentUser", config)
+    .get("/api/v1/currentUser", setAuthToken(getState))
     .then(res => {
       dispatch({
         type: POST_USER_DATA,
@@ -34,4 +24,18 @@ export const fetchCurrentUser = () => (dispatch, getState) => {
       });
     })
     .catch(err => console.log(err));
+};
+
+export const setAuthToken = getState => {
+  const token = getState().userReducer.token;
+
+  const config = {
+    headers: {
+      "Content-type": "application/json"
+    }
+  };
+
+  if (token) config.headers["Authorization"] = `Bearer ${token}`;
+
+  return config;
 };
