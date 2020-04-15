@@ -5,7 +5,7 @@ const initialState = {
   token: localStorage.getItem("token")
 };
 
-export const userReducer = (state = initialState, action) => {
+export const currentUserReducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_USER_DATA:
       localStorage.setItem("token", action.payload.token);

@@ -27,7 +27,7 @@ export const fetchCurrentUser = () => (dispatch, getState) => {
 };
 
 export const setAuthToken = getState => {
-  const token = getState().userReducer.token;
+  const token = getState().currentUserReducer.token;
 
   const config = {
     headers: {
