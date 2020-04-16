@@ -18,9 +18,9 @@ export const currentUserReducer = (state = initialState, action) => {
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
-        ...action.payload,
         error: [],
         currentUser: action.payload.user,
+        token: action.payload.token,
         isLoading: false
       };
     case CURRENT_USER_FETCH_ERROR:
