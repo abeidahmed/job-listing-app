@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { openSidebar } from "actions/sidebar-action";
 import { AvatarWithText } from "components/avatar";
+import { Dropdown } from "components/dropdown";
 import { H1 } from "components/typography";
 import { PillWithNumber } from "components/pill";
 import Icon from "components/icon";
@@ -26,11 +27,13 @@ const Header = props => {
         <PillWithNumber glyph="bell" number="5" />
         <UserAction>
           <AvatarWithText
-            onClick={() => setIsActive(!isActive)}
+            onClick={() => setIsActive(true)}
             text="Jennifer"
             img="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&&facepad=2.5&w=256&h=256&q=80"
           />
-          <UserDropdown isActive={isActive} />
+          <Dropdown isActive={isActive} onOutsideClick={() => setIsActive(false)}>
+            <UserDropdown />
+          </Dropdown>
         </UserAction>
       </Nav>
     </StyledHeader>
