@@ -58,8 +58,19 @@ router.get("/api/v1/currentUser", auth, async (req, res) => {
  * @access PRIVATE
  */
 router.get("/api/v1/allUsers", auth, async (req, res) => {
+  const sort = {};
+
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split("_");
+    sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+  }
+
   try {
-    const users = await User.find();
+    const users = await User.find({}, null, {
+      sort,
+      limit: parseInt(req.query.limit),
+      skip: parseInt(req.query.skip)
+    });
     res.send(users);
   } catch (err) {
     res.status(500).send();
