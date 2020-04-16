@@ -4,6 +4,7 @@ import {
   FETCH_ALL_USERS,
   IS_LOADING_WHILE_USERS_FETCH,
   IS_LOADING_WHILE_CURRENT_USER_FETCH,
+  LOGOUT_USER,
   POST_USER_DATA
 } from "./types";
 
@@ -27,6 +28,12 @@ export const currentUserFetchError = error => {
 export const isLoadingWhileCurrentUserFetch = () => {
   return {
     type: IS_LOADING_WHILE_CURRENT_USER_FETCH
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT_USER
   };
 };
 

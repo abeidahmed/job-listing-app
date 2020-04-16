@@ -71,7 +71,7 @@ router.get("/api/v1/allUsers", auth, async (req, res) => {
  * @description Logout user
  * @access PRIVATE
  */
-router.post("/api/v1/logout", auth, async (req, res) => {
+router.delete("/api/v1/logout", auth, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter(token => {
       return token.token !== req.token;
@@ -88,7 +88,7 @@ router.post("/api/v1/logout", auth, async (req, res) => {
  * @description Logout user from all instances
  * @access PRIVATE
  */
-router.post("/api/v1/logoutAll", auth, async (req, res) => {
+router.delete("/api/v1/logoutAll", auth, async (req, res) => {
   try {
     req.user.tokens = [];
     await req.user.save();

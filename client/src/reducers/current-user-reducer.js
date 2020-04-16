@@ -1,6 +1,7 @@
 import {
   CURRENT_USER_FETCH_ERROR,
   IS_LOADING_WHILE_CURRENT_USER_FETCH,
+  LOGOUT_USER,
   POST_USER_DATA
 } from "actions/types";
 
@@ -27,6 +28,7 @@ export const currentUserReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: [],
+        token: null,
         error: action.payload,
         isLoading: false
       };
@@ -34,6 +36,15 @@ export const currentUserReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true
+      };
+    case LOGOUT_USER:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        isLoading: false,
+        token: null,
+        currentUser: [],
+        error: []
       };
     default:
       return state;

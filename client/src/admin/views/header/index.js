@@ -6,7 +6,7 @@ import { Dropdown } from "components/dropdown";
 import { H1 } from "components/typography";
 import { PillWithNumber } from "components/pill";
 import Icon from "components/icon";
-import { UserDropdown } from "./components/profile-dropdown";
+import UserDropdown from "./components/profile-dropdown";
 import { OpenButton, StyledHeader, Nav, Wrapper, HeadTextWrapper, UserAction } from "./style";
 
 const Header = props => {
