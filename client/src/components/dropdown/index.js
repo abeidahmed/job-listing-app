@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { DropdownWrapper, DropdownInner } from "./style";
 
-export const Dropdown = ({ isActive, onOutsideClick, children }) => {
+export const Dropdown = ({ isActive, onOutsideClick, children, ...props }) => {
   const wrapperRef = useRef();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export const Dropdown = ({ isActive, onOutsideClick, children }) => {
   };
 
   return (
-    <DropdownWrapper isActive={isActive} ref={wrapperRef}>
+    <DropdownWrapper isActive={isActive} ref={wrapperRef} {...props}>
       <DropdownInner>{children}</DropdownInner>
     </DropdownWrapper>
   );

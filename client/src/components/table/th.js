@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { breakpoint } from "utils/breakpoint";
 import Icon from "components/icon";
 
 const StyledTh = styled.th`
@@ -24,12 +25,21 @@ const StyledTh = styled.th`
           padding-right: 4px;
         }
       }
+    `};
+
+  ${props =>
+    props.hasDropdown &&
+    css`
+      display: none;
+      ${breakpoint.lg`
+      display: table-cell;
     `}
+    `};
 `;
 
-export const Th = ({ hasButton, title, glyph = "sort-solid" }) => {
+export const Th = ({ hasButton, title, glyph = "sort-solid", ...props }) => {
   return (
-    <StyledTh hasButton={hasButton}>
+    <StyledTh hasButton={hasButton} {...props}>
       {hasButton ? (
         <div role="button">
           <span>{title}</span>

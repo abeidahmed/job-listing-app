@@ -1,7 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { breakpoint } from "utils/breakpoint";
 
 const StyledTd = styled.td`
+  ${props =>
+    props.hasDropdown &&
+    css`
+      display: none;
+      ${breakpoint.lg`
+      display: table-cell;
+    `}
+    `};
   padding: 12px 20px;
   white-space: nowrap;
   font-size: 14px;
@@ -9,6 +18,6 @@ const StyledTd = styled.td`
   line-height: 22px;
 `;
 
-export const Td = ({ children }) => {
-  return <StyledTd>{children}</StyledTd>;
+export const Td = ({ children, ...props }) => {
+  return <StyledTd {...props}>{children}</StyledTd>;
 };

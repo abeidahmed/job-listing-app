@@ -10,7 +10,7 @@ export const TableHead = () => {
         <Th title="Role" />
         <Th hasButton title="Joined on" />
         <Th hasButton title="Job listing" />
-        <Th></Th>
+        <Th hasDropdown></Th>
       </Tr>
     </thead>
   );

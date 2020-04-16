@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { zIndex } from "helpers/z-index";
 
 export const DropdownWrapper = styled.div`
   position: absolute;
@@ -11,6 +12,7 @@ export const DropdownWrapper = styled.div`
   border-radius: 4px;
   min-width: 150px;
   display: ${props => (props.isActive ? "block" : "none")};
+  z-index: ${zIndex.dropdown};
 
   hr {
     border: 0;
@@ -35,8 +37,12 @@ export const DropdownWrapper = styled.div`
       background-color: ${props => props.theme.color.gray100};
     }
 
+    svg {
+      padding-right: 8px;
+    }
+
     > span {
-      padding: 6px 0 6px 8px;
+      padding: 6px 0;
     }
   }
   button {
