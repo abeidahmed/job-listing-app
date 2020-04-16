@@ -1,25 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import { useOnClickOutside } from "utils/outside-click-hook";
 import { DropdownWrapper, DropdownInner } from "./style";
 
-export const Dropdown = ({ isActive, onOutsideClick, children, ...props }) => {
-  const wrapperRef = useRef();
+export const Dropdown = ({ isActive, onOutsideClick, children }) => {
+  const ref = useRef();
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  });
-
-  const handleOutsideClick = event => {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      onOutsideClick();
-    }
-  };
+  useOnClickOutside(ref, onOutsideClick);
 
   return (
-    <DropdownWrapper isActive={isActive} ref={wrapperRef} {...props}>
+    <DropdownWrapper isActive={isActive} ref={ref}>
       <DropdownInner>{children}</DropdownInner>
     </DropdownWrapper>
   );

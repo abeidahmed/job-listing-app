@@ -1,13 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { zIndex } from "helpers/z-index";
 
 export const DropdownWrapper = styled.div`
   position: absolute;
   top: 140%;
-  right: -5%;
+  right: 5%;
   margin-top: 4px;
   background-color: white;
-  box-shadow: ${props => props.theme.shadow.medium};
+  box-shadow: ${props => props.theme.shadow.xlarge};
   white-space: nowrap;
   border-radius: 4px;
   min-width: 150px;

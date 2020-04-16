@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
-import { Dropdown } from "components/dropdown";
-import Icon from "components/icon";
-import { StyledButton } from "components/button";
 import { Tbody, Td, Tr } from "components/table";
-import { UserAction } from "./user-action";
-import { UserProfile, NameWrapper, TableAction } from "./style";
+import { UserProfile, NameWrapper } from "./style";
 
 export const TableBody = ({ allUsers }) => {
-  const [isActive, setIsActive] = useState(false);
   return (
     <Tbody>
       {allUsers.map(user => (
@@ -28,15 +23,10 @@ export const TableBody = ({ allUsers }) => {
           <Td>Admin</Td>
           <Td>{moment(user.createdAt).format("Do MMM, YYYY")}</Td>
           <Td>42</Td>
-          <Td hasDropdown>
-            <TableAction>
-              <StyledButton color="iconPrimary" iconOnlyPrimary onClick={() => setIsActive(true)}>
-                <Icon glyph="dots-horizontal" />
-              </StyledButton>
-              <Dropdown isActive={isActive} onOutsideClick={() => setIsActive(false)}>
-                <UserAction />
-              </Dropdown>
-            </TableAction>
+          <Td hasLinks>
+            <a href="/">Edit</a>
+            {" | "}
+            <a href="#">Delete</a>
           </Td>
         </Tr>
       ))}

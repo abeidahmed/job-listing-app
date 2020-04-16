@@ -11,6 +11,7 @@ import { OpenButton, StyledHeader, Nav, Wrapper, HeadTextWrapper, UserAction } f
 
 const Header = props => {
   const [isActive, setIsActive] = useState(false);
+
   return (
     <StyledHeader>
       <Wrapper>
