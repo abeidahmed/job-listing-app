@@ -67,7 +67,7 @@ router.get("/api/v1/allUsers", auth, async (req, res) => {
 });
 
 /**
- * @type POST
+ * @type DELETE
  * @description Logout user
  * @access PRIVATE
  */
@@ -84,7 +84,7 @@ router.delete("/api/v1/logout", auth, async (req, res) => {
 });
 
 /**
- * @type POST
+ * @type DELETE
  * @description Logout user from all instances
  * @access PRIVATE
  */
@@ -93,6 +93,25 @@ router.delete("/api/v1/logoutAll", auth, async (req, res) => {
     req.user.tokens = [];
     await req.user.save();
     res.send();
+  } catch (err) {
+    res.status(500).send();
+  }
+});
+
+/**
+ * @type DELETE
+ * @description Delete the user from the database
+ * @access PRIVATE
+ */
+router.delete("/api/v1/user/:id", auth, async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const user = await User.findOne({ _id });
+    if (!user) throw new Error();
+
+    await User.findOneAndRemove({ _id });
+
+    res.send(user);
   } catch (err) {
     res.status(500).send();
   }
