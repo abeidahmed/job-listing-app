@@ -38,10 +38,9 @@ export const DropdownWrapper = styled.div`
     > span {
       padding: 6px 0 6px 8px;
     }
-
-    button {
-      width: 100%;
-    }
+  }
+  button {
+    width: 100%;
   }
 `;
 
