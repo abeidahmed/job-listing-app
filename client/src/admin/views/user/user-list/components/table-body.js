@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import Icon from "components/icon";
 import { StyledButton } from "components/button";
 import { Tbody, Td, Tr } from "components/table";
@@ -22,7 +23,7 @@ export const TableBody = ({ allUsers }) => {
           </Td>
           <Td>{user.email}</Td>
           <Td>Admin</Td>
-          <Td>{user.createdAt}</Td>
+          <Td>{moment(user.createdAt).format("Do MMM, YYYY")}</Td>
           <Td>42</Td>
           <Td>
             <StyledButton color="iconPrimary" iconOnlyPrimary>
