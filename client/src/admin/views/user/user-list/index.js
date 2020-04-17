@@ -19,13 +19,17 @@ const UserList = ({ allUsers, error, isLoading, pageHead, fetchAllUsers, role, s
       pageHead(title);
     };
 
+    sendTitle("Users");
+  }, [pageHead]);
+
+  // render users with each search query and filters
+  useEffect(() => {
     const fetchUsers = role => {
       fetchAllUsers(role);
     };
 
-    sendTitle("Users");
     fetchUsers(role);
-  }, [pageHead, fetchAllUsers, role]);
+  }, [fetchAllUsers, role]);
 
   return (
     <AdminContainer>
