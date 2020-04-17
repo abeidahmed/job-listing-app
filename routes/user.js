@@ -39,6 +39,34 @@ router.post("/api/v1/login", async (req, res) => {
 });
 
 /**
+ * @type PATCH
+ * @description Update user
+ * @access PRIVATE
+ */
+router.patch("/api/v1/users/:id", auth, async (req, res) => {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ["firstName", "lastName", "email", "password"];
+  const isValidUpdate = updates.every(update => allowedUpdates.includes(update));
+
+  if (!isValidUpdate) res.status(400).send({ error: "Invalid update parameters" });
+
+  const _id = req.params.id;
+  try {
+    const user = await User.findById(_id);
+
+    if (!user) res.status(404).send({ error: "User is not present!" });
+
+    updates.forEach(update => {
+      user[update] = req.body[update];
+    });
+    await user.save();
+    res.send(user);
+  } catch (err) {
+    res.status(500).send();
+  }
+});
+
+/**
  * @type GET
  * @description Get the current user
  * @access PRIVATE
@@ -56,7 +84,7 @@ router.get("/api/v1/currentUser", auth, async (req, res) => {
 /**
  * @type GET
  * @description Fetch all the users
- * @access PRIVATE
+ * @access PRIVATE, only admin
  */
 router.get("/api/v1/allUsers", isAdmin, async (req, res) => {
   const sort = {};
@@ -124,7 +152,7 @@ router.delete("/api/v1/logoutAll", auth, async (req, res) => {
 /**
  * @type DELETE
  * @description Delete the user from the database
- * @access PRIVATE
+ * @access PRIVATE, only admin
  */
 router.delete("/api/v1/user/:id", isAdmin, async (req, res) => {
   const _id = req.params.id;
