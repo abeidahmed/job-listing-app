@@ -1,4 +1,10 @@
 /**
+ * @type Modal
+ */
+export const OPEN_MODAL = "OPEN_MODAL";
+export const CLOSE_MODAL = "CLOSE_MODAL";
+
+/**
  * @type Send page title
  */
 export const PAGE_HEAD = "PAGE_HEAD";

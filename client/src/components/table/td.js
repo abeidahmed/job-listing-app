@@ -11,11 +11,16 @@ const StyledTd = styled.td`
   ${props =>
     props.hasLinks &&
     css`
-      a {
+      a,
+      button {
         text-decoration: none;
         color: ${props => props.theme.color.blue700};
         &:hover {
           text-decoration: underline;
+        }
+        &:focus {
+          outline: none;
+          color: ${props => props.theme.color.textDark};
         }
       }
     `}

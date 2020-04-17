@@ -72,6 +72,15 @@ const Button = css`
               }
             `}
         `;
+      case "danger":
+        return css`
+          background-color: ${props => props.theme.color.red600};
+          color: white;
+          &:hover,
+          &:focus {
+            background-color: ${props => props.theme.color.red700};
+          }
+        `;
       case "iconPrimary":
         return css`
           background-color: transparent;

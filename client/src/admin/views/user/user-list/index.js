@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import { searchUsers, setRole, sortUsers } from "actions/user-action";
 import { ActionButton } from "./components/action-button";
 import { AdminContainer } from "components/layout";
+import { closeModal, openModal } from "actions/modal";
+import { DeleteModal } from "./components/delete-modal";
 import { fetchAllUsers } from "api/user";
 import Icon from "components/icon";
+import Modal from "components/modal";
 import { setPageTitle } from "actions/page-head";
 import { Pagination } from "components/pagination";
 import { SearchField } from "./components/search-field";
@@ -15,10 +18,12 @@ import { Spinner, PageHeadWrapper, MainContent } from "./style";
 
 const UserList = ({
   allUsers,
+  closeModal,
   error,
   isLoading,
   pageHead,
   fetchAllUsers,
+  openModal,
   role,
   searchTerm,
   searchValue,
@@ -47,6 +52,9 @@ const UserList = ({
 
   return (
     <AdminContainer>
+      <Modal onOutsideClick={closeModal}>
+        <DeleteModal closeModal={closeModal} />
+      </Modal>
       <PageHeadWrapper>
         <SearchField searchTerm={searchTerm} searchValue={searchValue} />
         <ActionButton sendRole={sendRole} />
@@ -65,7 +73,7 @@ const UserList = ({
               sortByJoinDate={sortByJoinDate}
               setSortByJoinDate={setSortByJoinDate}
             />
-            <TableBody allUsers={allUsers} />
+            <TableBody allUsers={allUsers} openModal={openModal} />
           </Table>
           <Pagination />
         </MainContent>
@@ -92,7 +100,9 @@ const mapDispatchToProps = dispatch => {
     fetchAllUsers: (value, search) => dispatch(fetchAllUsers(value, search)),
     sendRole: value => dispatch(setRole(value)),
     searchTerm: value => dispatch(searchUsers(value)),
-    sort: array => dispatch(sortUsers(array))
+    sort: array => dispatch(sortUsers(array)),
+    openModal: () => dispatch(openModal()),
+    closeModal: () => dispatch(closeModal())
   };
 };
 

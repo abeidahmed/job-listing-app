@@ -3,7 +3,7 @@ import moment from "moment";
 import { Tbody, Td, Tr } from "components/table";
 import { UserProfile, NameWrapper } from "./style";
 
-export const TableBody = ({ allUsers }) => {
+export const TableBody = ({ allUsers, openModal }) => {
   return (
     <Tbody>
       {allUsers.map(user => (
@@ -26,7 +26,7 @@ export const TableBody = ({ allUsers }) => {
           <Td hasLinks>
             <a href="/">Edit</a>
             {" | "}
-            <a href="/">Delete</a>
+            <button onClick={openModal}>Delete</button>
           </Td>
         </Tr>
       ))}
