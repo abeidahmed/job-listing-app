@@ -2,6 +2,7 @@ import {
   ALL_USERS_FETCH_ERROR,
   FETCH_ALL_USERS,
   IS_LOADING_WHILE_USERS_FETCH,
+  SEARCH_USERS,
   SET_USER_ROLE
 } from "actions/types";
 
@@ -9,7 +10,8 @@ const initialState = {
   users: [],
   isLoading: false,
   error: [],
-  role: ""
+  role: "",
+  searchTerm: ""
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -37,6 +39,11 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         role: action.payload
+      };
+    case SEARCH_USERS:
+      return {
+        ...state,
+        searchTerm: action.payload
       };
     default:
       return state;

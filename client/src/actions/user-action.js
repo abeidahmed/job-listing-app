@@ -6,6 +6,7 @@ import {
   IS_LOADING_WHILE_CURRENT_USER_FETCH,
   LOGOUT_USER,
   POST_USER_DATA,
+  SEARCH_USERS,
   SET_USER_ROLE
 } from "./types";
 
@@ -62,5 +63,12 @@ export const setRole = role => {
   return {
     type: SET_USER_ROLE,
     payload: role
+  };
+};
+
+export const searchUsers = value => {
+  return {
+    type: SEARCH_USERS,
+    payload: value
   };
 };

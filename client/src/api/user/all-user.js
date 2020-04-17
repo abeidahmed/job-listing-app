@@ -7,12 +7,13 @@ import {
   isLoadingWhileUsersFetch
 } from "actions/user-action";
 
-export const fetchAllUsers = role => (dispatch, getState) => {
+export const fetchAllUsers = (role, name) => (dispatch, getState) => {
   const url = queryString.stringifyUrl(
     {
       url: "/api/v1/allUsers",
       query: {
-        role
+        role,
+        name
       }
     },
     { skipEmptyString: true }
