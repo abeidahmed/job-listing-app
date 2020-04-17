@@ -5,7 +5,7 @@ import { ActionButton } from "./components/action-button";
 import { AdminContainer } from "components/layout";
 import { fetchAllUsers } from "api/user";
 import Icon from "components/icon";
-import { pageHeadAction } from "actions/page-head";
+import { setPageTitle } from "actions/page-head";
 import { Pagination } from "components/pagination";
 import { SearchField } from "./components/search-field";
 import { Table } from "components/table";
@@ -88,7 +88,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    pageHead: value => dispatch(pageHeadAction(value)),
+    pageHead: value => dispatch(setPageTitle(value)),
     fetchAllUsers: (value, search) => dispatch(fetchAllUsers(value, search)),
     sendRole: value => dispatch(setRole(value)),
     searchTerm: value => dispatch(searchUsers(value)),

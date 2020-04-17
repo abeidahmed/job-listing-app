@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { pageHeadAction } from "actions/page-head";
+import { setPageTitle } from "actions/page-head";
 
 const Dashboard = ({ pageHead }) => {
   useEffect(() => {
@@ -20,7 +20,7 @@ const Dashboard = ({ pageHead }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    pageHead: value => dispatch(pageHeadAction(value))
+    pageHead: value => dispatch(setPageTitle(value))
   };
 };
 

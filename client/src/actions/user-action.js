@@ -2,8 +2,8 @@ import {
   ALL_USERS_FETCH_ERROR,
   CURRENT_USER_FETCH_ERROR,
   FETCH_ALL_USERS,
-  IS_LOADING_WHILE_USERS_FETCH,
-  IS_LOADING_WHILE_CURRENT_USER_FETCH,
+  USERS_LOADING,
+  CURRENT_USER_LOADING,
   LOGOUT_USER,
   POST_USER_DATA,
   SEARCH_USERS,
@@ -28,9 +28,9 @@ export const currentUserFetchError = error => {
   };
 };
 
-export const isLoadingWhileCurrentUserFetch = () => {
+export const currentUserLoading = () => {
   return {
-    type: IS_LOADING_WHILE_CURRENT_USER_FETCH
+    type: CURRENT_USER_LOADING
   };
 };
 
@@ -47,16 +47,16 @@ export const getAllUsersAction = users => {
   };
 };
 
-export const allUsersFetchError = error => {
+export const usersFetchError = error => {
   return {
     type: ALL_USERS_FETCH_ERROR,
     payload: error
   };
 };
 
-export const isLoadingWhileUsersFetch = () => {
+export const usersLoading = () => {
   return {
-    type: IS_LOADING_WHILE_USERS_FETCH
+    type: USERS_LOADING
   };
 };
 

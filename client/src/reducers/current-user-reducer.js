@@ -1,6 +1,6 @@
 import {
   CURRENT_USER_FETCH_ERROR,
-  IS_LOADING_WHILE_CURRENT_USER_FETCH,
+  CURRENT_USER_LOADING,
   LOGOUT_USER,
   POST_USER_DATA
 } from "actions/types";
@@ -32,7 +32,7 @@ export const currentUserReducer = (state = initialState, action) => {
         error: action.payload,
         isLoading: false
       };
-    case IS_LOADING_WHILE_CURRENT_USER_FETCH:
+    case CURRENT_USER_LOADING:
       return {
         ...state,
         isLoading: true

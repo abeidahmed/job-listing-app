@@ -1,6 +1,6 @@
 import { PAGE_HEAD } from "./types";
 
-export const pageHeadAction = head => {
+export const setPageTitle = head => {
   return {
     type: PAGE_HEAD,
     payload: head

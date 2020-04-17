@@ -1,7 +1,7 @@
 import {
   ALL_USERS_FETCH_ERROR,
   FETCH_ALL_USERS,
-  IS_LOADING_WHILE_USERS_FETCH,
+  USERS_LOADING,
   SEARCH_USERS,
   SET_USER_ROLE,
   SORT_USERS
@@ -32,7 +32,7 @@ export const usersReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload
       };
-    case IS_LOADING_WHILE_USERS_FETCH:
+    case USERS_LOADING:
       return {
         ...state,
         isLoading: true

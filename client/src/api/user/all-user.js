@@ -1,11 +1,7 @@
 import axios from "axios";
 import queryString from "query-string";
 import { authToken } from "middleware/auth-token";
-import {
-  allUsersFetchError,
-  getAllUsersAction,
-  isLoadingWhileUsersFetch
-} from "actions/user-action";
+import { usersFetchError, getAllUsersAction, usersLoading } from "actions/user-action";
 
 export const fetchAllUsers = () => (dispatch, getState) => {
   const { role, searchTerm, sortBy } = getState().usersReducer;
@@ -24,8 +20,8 @@ export const fetchAllUsers = () => (dispatch, getState) => {
   axios
     .get(url, authToken(getState))
     .then(res => {
-      dispatch(isLoadingWhileUsersFetch());
+      dispatch(usersLoading());
       dispatch(getAllUsersAction(res.data));
     })
-    .catch(err => dispatch(allUsersFetchError(err.message)));
+    .catch(err => dispatch(usersFetchError(err.message)));
 };
