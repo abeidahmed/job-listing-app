@@ -3,7 +3,8 @@ import {
   FETCH_ALL_USERS,
   IS_LOADING_WHILE_USERS_FETCH,
   SEARCH_USERS,
-  SET_USER_ROLE
+  SET_USER_ROLE,
+  SORT_USERS
 } from "actions/types";
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
   isLoading: false,
   error: [],
   role: "",
-  searchTerm: ""
+  searchTerm: "",
+  sortBy: ""
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -44,6 +46,11 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         searchTerm: action.payload
+      };
+    case SORT_USERS:
+      return {
+        ...state,
+        sortBy: action.payload
       };
     default:
       return state;

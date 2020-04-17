@@ -7,17 +7,20 @@ import {
   isLoadingWhileUsersFetch
 } from "actions/user-action";
 
-export const fetchAllUsers = (role, name) => (dispatch, getState) => {
+export const fetchAllUsers = () => (dispatch, getState) => {
+  const { role, searchTerm, sortBy } = getState().usersReducer;
   const url = queryString.stringifyUrl(
     {
       url: "/api/v1/allUsers",
       query: {
         role,
-        name
+        name: searchTerm,
+        sortBy
       }
     },
     { skipEmptyString: true }
   );
+
   axios
     .get(url, authToken(getState))
     .then(res => {

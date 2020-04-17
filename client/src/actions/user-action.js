@@ -7,7 +7,8 @@ import {
   LOGOUT_USER,
   POST_USER_DATA,
   SEARCH_USERS,
-  SET_USER_ROLE
+  SET_USER_ROLE,
+  SORT_USERS
 } from "./types";
 
 export const postUserAction = (user, token) => {
@@ -69,6 +70,13 @@ export const setRole = role => {
 export const searchUsers = value => {
   return {
     type: SEARCH_USERS,
+    payload: value
+  };
+};
+
+export const sortUsers = value => {
+  return {
+    type: SORT_USERS,
     payload: value
   };
 };

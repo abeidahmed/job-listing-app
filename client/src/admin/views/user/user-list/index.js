@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { searchUsers, setRole } from "actions/user-action";
+import { searchUsers, setRole, sortUsers } from "actions/user-action";
 import { ActionButton } from "./components/action-button";
 import { AdminContainer } from "components/layout";
 import { fetchAllUsers } from "api/user";
@@ -22,8 +22,12 @@ const UserList = ({
   role,
   searchTerm,
   searchValue,
-  sendRole
+  sendRole,
+  sort
 }) => {
+  const [sortByNameState, setSortByNameState] = useState(false);
+  const [sortByJoinDate, setSortByJoinDate] = useState(false);
+
   useEffect(() => {
     const sendTitle = title => {
       pageHead(title);
@@ -34,12 +38,12 @@ const UserList = ({
 
   // render users with each search query and filters
   useEffect(() => {
-    const fetchUsers = (role, searchValue) => {
-      fetchAllUsers(role, searchValue);
+    const fetchUsers = () => {
+      fetchAllUsers();
     };
 
-    fetchUsers(role, searchValue);
-  }, [fetchAllUsers, role, searchValue]);
+    fetchUsers();
+  }, [fetchAllUsers, role, searchValue, sortByNameState, sortByJoinDate]);
 
   return (
     <AdminContainer>
@@ -54,7 +58,13 @@ const UserList = ({
       ) : (
         <MainContent>
           <Table>
-            <TableHead />
+            <TableHead
+              sort={sort}
+              sortByNameState={sortByNameState}
+              setSortByNameState={setSortByNameState}
+              sortByJoinDate={sortByJoinDate}
+              setSortByJoinDate={setSortByJoinDate}
+            />
             <TableBody allUsers={allUsers} />
           </Table>
           <Pagination />
@@ -65,12 +75,14 @@ const UserList = ({
 };
 
 const mapStateToProps = state => {
+  const { users, isLoading, error, role, searchTerm, sortBy } = state.usersReducer;
   return {
-    allUsers: state.usersReducer.users,
-    isLoading: state.usersReducer.isLoading,
-    error: state.usersReducer.error,
-    role: state.usersReducer.role,
-    searchValue: state.usersReducer.searchTerm
+    allUsers: users,
+    isLoading: isLoading,
+    error: error,
+    role: role,
+    searchValue: searchTerm,
+    sortName: sortBy
   };
 };
 
@@ -79,7 +91,8 @@ const mapDispatchToProps = dispatch => {
     pageHead: value => dispatch(pageHeadAction(value)),
     fetchAllUsers: (value, search) => dispatch(fetchAllUsers(value, search)),
     sendRole: value => dispatch(setRole(value)),
-    searchTerm: value => dispatch(searchUsers(value))
+    searchTerm: value => dispatch(searchUsers(value)),
+    sort: array => dispatch(sortUsers(array))
   };
 };
 
