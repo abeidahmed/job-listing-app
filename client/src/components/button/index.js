@@ -12,6 +12,7 @@ const Button = css`
   cursor: pointer;
   transition: 150ms all ease-in;
   white-space: nowrap;
+  box-shadow: ${props => props.theme.shadow.xsmall};
 
   ${props => props.block && "width: 100%"};
 
