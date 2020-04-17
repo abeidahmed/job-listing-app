@@ -1,6 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const auth = require("../middleware/auth");
+const isAdmin = require("../middleware/is-admin");
 const User = require("../models/user");
 
 /**
@@ -57,16 +58,27 @@ router.get("/api/v1/currentUser", auth, async (req, res) => {
  * @description Fetch all the users
  * @access PRIVATE
  */
-router.get("/api/v1/allUsers", auth, async (req, res) => {
+router.get("/api/v1/allUsers", isAdmin, async (req, res) => {
   const sort = {};
+  const { role, name } = req.query;
 
   if (req.query.sortBy) {
     const parts = req.query.sortBy.split("_");
     sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
   }
 
+  const match = {
+    ...(role && { role }),
+    ...(name && {
+      $or: [
+        { firstName: { $regex: name, $options: "i" } },
+        { lastName: { $regex: name, $options: "i" } }
+      ]
+    })
+  };
+
   try {
-    const users = await User.find({}, null, {
+    const users = await User.find(match, null, {
       sort,
       limit: parseInt(req.query.limit),
       skip: parseInt(req.query.skip)
@@ -114,7 +126,7 @@ router.delete("/api/v1/logoutAll", auth, async (req, res) => {
  * @description Delete the user from the database
  * @access PRIVATE
  */
-router.delete("/api/v1/user/:id", auth, async (req, res) => {
+router.delete("/api/v1/user/:id", isAdmin, async (req, res) => {
   const _id = req.params.id;
   try {
     const user = await User.findOne({ _id });
