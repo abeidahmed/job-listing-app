@@ -9,7 +9,7 @@ const initialState = {
   users: [],
   isLoading: false,
   error: [],
-  role: undefined
+  role: ""
 };
 
 export const usersReducer = (state = initialState, action) => {

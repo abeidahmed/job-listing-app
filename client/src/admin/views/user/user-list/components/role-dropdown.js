@@ -6,7 +6,7 @@ export const RoleDropdown = ({ sendRole, setName }) => {
     <>
       <button
         onClick={() => {
-          sendRole(undefined);
+          sendRole("");
           setName("All users");
         }}
       >

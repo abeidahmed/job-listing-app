@@ -8,12 +8,15 @@ import {
 } from "actions/user-action";
 
 export const fetchAllUsers = role => (dispatch, getState) => {
-  const url = queryString.stringifyUrl({
-    url: "/api/v1/allUsers",
-    query: {
-      role
-    }
-  });
+  const url = queryString.stringifyUrl(
+    {
+      url: "/api/v1/allUsers",
+      query: {
+        role
+      }
+    },
+    { skipEmptyString: true }
+  );
   axios
     .get(url, authToken(getState))
     .then(res => {
