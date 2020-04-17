@@ -20,13 +20,13 @@ export const TableBody = ({ allUsers }) => {
             </UserProfile>
           </Td>
           <Td>{user.email}</Td>
-          <Td>Admin</Td>
+          <Td>{user.role}</Td>
           <Td>{moment(user.createdAt).format("Do MMM, YYYY")}</Td>
           <Td>42</Td>
           <Td hasLinks>
             <a href="/">Edit</a>
             {" | "}
-            <a href="#">Delete</a>
+            <a href="/">Delete</a>
           </Td>
         </Tr>
       ))}

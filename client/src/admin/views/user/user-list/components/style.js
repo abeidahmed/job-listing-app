@@ -24,3 +24,18 @@ export const NameWrapper = styled.div`
 export const TableAction = styled.div`
   position: relative;
 `;
+
+// role select
+
+export const ActionContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  div:not(:first-child) {
+    margin-left: 12px;
+  }
+`;
+
+export const RoleSelect = styled.div`
+  position: relative;
+`;

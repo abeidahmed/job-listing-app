@@ -106,12 +106,20 @@ const Button = css`
     `}
 
   ${props =>
-    props.icon &&
+    props.iconLeft &&
     css`
       svg {
-        margin-right: 4px;
+        padding-right: 4px;
       }
     `};
+
+  ${props =>
+    props.iconRight &&
+    css`
+      dvg {
+        padding-left: 4px;
+      }
+    `}
 `;
 
 export const StyledButton = styled.button`

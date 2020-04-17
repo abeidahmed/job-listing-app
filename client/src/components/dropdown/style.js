@@ -3,8 +3,8 @@ import { zIndex } from "helpers/z-index";
 
 export const DropdownWrapper = styled.div`
   position: absolute;
-  top: 140%;
-  right: 5%;
+  top: 100%;
+  right: 0%;
   margin-top: 4px;
   background-color: white;
   box-shadow: ${props => props.theme.shadow.xlarge};

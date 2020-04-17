@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { pageHeadAction } from "actions/page-head";
 import { fetchAllUsers } from "api/user";
+import { setRole } from "actions/user-action";
 import { ActionButton } from "./components/action-button";
 import { AdminContainer } from "components/layout";
 import Icon from "components/icon";
@@ -12,25 +13,25 @@ import { TableBody } from "./components/table-body";
 import { TableHead } from "./components/table-head";
 import { Spinner, PageHeadWrapper, MainContent } from "./style";
 
-const UserList = ({ allUsers, error, isLoading, pageHead, fetchAllUsers }) => {
+const UserList = ({ allUsers, error, isLoading, pageHead, fetchAllUsers, role, sendRole }) => {
   useEffect(() => {
     const sendTitle = title => {
       pageHead(title);
     };
 
-    const fetchUsers = () => {
-      fetchAllUsers();
+    const fetchUsers = role => {
+      fetchAllUsers(role);
     };
 
     sendTitle("Users");
-    fetchUsers();
-  }, [pageHead, fetchAllUsers]);
+    fetchUsers(role);
+  }, [pageHead, fetchAllUsers, role]);
 
   return (
     <AdminContainer>
       <PageHeadWrapper>
         <SearchField />
-        <ActionButton />
+        <ActionButton sendRole={sendRole} />
       </PageHeadWrapper>
       {isLoading || error.length !== 0 ? (
         <Spinner>
@@ -53,14 +54,16 @@ const mapStateToProps = state => {
   return {
     allUsers: state.usersReducer.users,
     isLoading: state.usersReducer.isLoading,
-    error: state.usersReducer.error
+    error: state.usersReducer.error,
+    role: state.usersReducer.role
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     pageHead: value => dispatch(pageHeadAction(value)),
-    fetchAllUsers: () => dispatch(fetchAllUsers())
+    fetchAllUsers: value => dispatch(fetchAllUsers(value)),
+    sendRole: value => dispatch(setRole(value))
   };
 };
 

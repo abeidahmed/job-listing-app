@@ -1,4 +1,5 @@
 import axios from "axios";
+import queryString from "query-string";
 import { authToken } from "middleware/auth-token";
 import {
   allUsersFetchError,
@@ -6,9 +7,15 @@ import {
   isLoadingWhileUsersFetch
 } from "actions/user-action";
 
-export const fetchAllUsers = () => (dispatch, getState) => {
+export const fetchAllUsers = role => (dispatch, getState) => {
+  const url = queryString.stringifyUrl({
+    url: "/api/v1/allUsers",
+    query: {
+      role
+    }
+  });
   axios
-    .get("/api/v1/allUsers", authToken(getState))
+    .get(url, authToken(getState))
     .then(res => {
       dispatch(isLoadingWhileUsersFetch());
       dispatch(getAllUsersAction(res.data));

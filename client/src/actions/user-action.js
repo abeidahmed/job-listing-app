@@ -5,7 +5,8 @@ import {
   IS_LOADING_WHILE_USERS_FETCH,
   IS_LOADING_WHILE_CURRENT_USER_FETCH,
   LOGOUT_USER,
-  POST_USER_DATA
+  POST_USER_DATA,
+  SET_USER_ROLE
 } from "./types";
 
 export const postUserAction = (user, token) => {
@@ -54,5 +55,12 @@ export const allUsersFetchError = error => {
 export const isLoadingWhileUsersFetch = () => {
   return {
     type: IS_LOADING_WHILE_USERS_FETCH
+  };
+};
+
+export const setRole = role => {
+  return {
+    type: SET_USER_ROLE,
+    payload: role
   };
 };

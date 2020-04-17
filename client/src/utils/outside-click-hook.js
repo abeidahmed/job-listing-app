@@ -6,7 +6,7 @@ export const useOnClickOutside = (ref, handler) => {
       return;
     }
 
-    handler(event);
+    handler();
   };
 
   useEffect(() => {
@@ -15,5 +15,5 @@ export const useOnClickOutside = (ref, handler) => {
     return () => {
       document.removeEventListener("mousedown", listener);
     };
-  }, [ref, handler]);
+  });
 };
