@@ -158,7 +158,11 @@ router.delete("/user/:id", isAdmin, async (req, res) => {
   const _id = req.params.id;
   try {
     const user = await User.findOne({ _id });
-    if (!user) throw new Error();
+    if (!user) return res.status(500).json({ error: "User is not present on the database." });
+
+    if (user.role === "Admin") {
+      return res.status(500).json({ error: "Cannot delete admins." });
+    }
 
     await User.findOneAndRemove({ _id });
 
