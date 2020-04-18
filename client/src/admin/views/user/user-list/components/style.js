@@ -18,7 +18,6 @@ export const UserProfile = styled.div`
 
 export const NameWrapper = styled.div`
   margin-left: 12px;
-  font-weight: 500;
 `;
 
 export const TableAction = styled.div`

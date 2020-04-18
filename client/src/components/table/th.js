@@ -19,6 +19,10 @@ const StyledTh = styled.th`
         display: flex;
         align-items: center;
         cursor: pointer;
+        &:hover,
+        &:focus {
+          color: ${props => props.theme.color.gray600};
+        }
 
         > span {
           padding-right: 4px;
