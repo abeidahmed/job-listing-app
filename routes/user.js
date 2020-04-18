@@ -9,7 +9,7 @@ const User = require("../models/user");
  * @description Signup user
  * @access PUBLIC
  */
-router.post("/api/v1/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
   const user = new User(req.body);
 
   try {
@@ -26,7 +26,7 @@ router.post("/api/v1/signup", async (req, res) => {
  * @description Login user
  * @access PUBLIC
  */
-router.post("/api/v1/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -43,7 +43,7 @@ router.post("/api/v1/login", async (req, res) => {
  * @description Update user
  * @access PRIVATE
  */
-router.patch("/api/v1/users/:id", auth, async (req, res) => {
+router.patch("/users/:id", auth, async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = ["firstName", "lastName", "email", "password"];
   const isValidUpdate = updates.every(update => allowedUpdates.includes(update));
@@ -71,7 +71,7 @@ router.patch("/api/v1/users/:id", auth, async (req, res) => {
  * @description Get the current user
  * @access PRIVATE
  */
-router.get("/api/v1/currentUser", auth, async (req, res) => {
+router.get("/currentUser", auth, async (req, res) => {
   try {
     const user = req.user;
     const token = req.token;
@@ -86,7 +86,7 @@ router.get("/api/v1/currentUser", auth, async (req, res) => {
  * @description Fetch all the users
  * @access PRIVATE, only admin
  */
-router.get("/api/v1/allUsers", isAdmin, async (req, res) => {
+router.get("/allUsers", isAdmin, async (req, res) => {
   const sort = {};
   const { role, name } = req.query;
 
@@ -122,7 +122,7 @@ router.get("/api/v1/allUsers", isAdmin, async (req, res) => {
  * @description Logout user
  * @access PRIVATE
  */
-router.delete("/api/v1/logout", auth, async (req, res) => {
+router.delete("/logout", auth, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter(token => {
       return token.token !== req.token;
@@ -139,7 +139,7 @@ router.delete("/api/v1/logout", auth, async (req, res) => {
  * @description Logout user from all instances
  * @access PRIVATE
  */
-router.delete("/api/v1/logoutAll", auth, async (req, res) => {
+router.delete("/logoutAll", auth, async (req, res) => {
   try {
     req.user.tokens = [];
     await req.user.save();
@@ -154,7 +154,7 @@ router.delete("/api/v1/logoutAll", auth, async (req, res) => {
  * @description Delete the user from the database
  * @access PRIVATE, only admin
  */
-router.delete("/api/v1/user/:id", isAdmin, async (req, res) => {
+router.delete("/user/:id", isAdmin, async (req, res) => {
   const _id = req.params.id;
   try {
     const user = await User.findOne({ _id });
