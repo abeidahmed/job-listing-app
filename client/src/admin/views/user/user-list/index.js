@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { searchUsers, setRole, sortUsers } from "actions/user-action";
+import { searchUsers, setRole, setUserId, sortUsers } from "actions/user-action";
 import { ActionButton } from "./components/action-button";
 import { AdminContainer } from "components/layout";
 import { closeModal, openModal } from "actions/modal";
 import { DeleteModal } from "./components/delete-modal";
-import { fetchAllUsers } from "api/user";
+import { deleteUsers, fetchAllUsers } from "api/user";
 import Icon from "components/icon";
 import Modal from "components/modal";
 import { setPageTitle } from "actions/page-head";
@@ -19,6 +19,7 @@ import { Spinner, PageHeadWrapper, MainContent } from "./style";
 const UserList = ({
   allUsers,
   closeModal,
+  deleteUser,
   error,
   isLoading,
   pageHead,
@@ -28,7 +29,9 @@ const UserList = ({
   searchTerm,
   searchValue,
   sendRole,
-  sort
+  setUserId,
+  sort,
+  userId
 }) => {
   const [sortByNameState, setSortByNameState] = useState(false);
   const [sortByJoinDate, setSortByJoinDate] = useState(false);
@@ -48,12 +51,12 @@ const UserList = ({
     };
 
     fetchUsers();
-  }, [fetchAllUsers, role, searchValue, sortByNameState, sortByJoinDate]);
+  }, [fetchAllUsers, userId, role, searchValue, sortByNameState, sortByJoinDate]);
 
   return (
     <AdminContainer>
       <Modal onOutsideClick={closeModal}>
-        <DeleteModal closeModal={closeModal} />
+        <DeleteModal closeModal={closeModal} deleteUser={deleteUser} />
       </Modal>
       <PageHeadWrapper>
         <SearchField searchTerm={searchTerm} searchValue={searchValue} />
@@ -73,7 +76,7 @@ const UserList = ({
               sortByJoinDate={sortByJoinDate}
               setSortByJoinDate={setSortByJoinDate}
             />
-            <TableBody allUsers={allUsers} openModal={openModal} />
+            <TableBody allUsers={allUsers} openModal={openModal} setUserId={setUserId} />
           </Table>
           <Pagination />
         </MainContent>
@@ -83,26 +86,29 @@ const UserList = ({
 };
 
 const mapStateToProps = state => {
-  const { users, isLoading, error, role, searchTerm, sortBy } = state.usersReducer;
+  const { users, userId, isLoading, error, role, searchTerm, sortBy } = state.usersReducer;
   return {
     allUsers: users,
-    isLoading: isLoading,
-    error: error,
-    role: role,
+    error,
+    isLoading,
+    role,
     searchValue: searchTerm,
-    sortName: sortBy
+    sortName: sortBy,
+    userId
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    pageHead: value => dispatch(setPageTitle(value)),
-    fetchAllUsers: (value, search) => dispatch(fetchAllUsers(value, search)),
-    sendRole: value => dispatch(setRole(value)),
-    searchTerm: value => dispatch(searchUsers(value)),
-    sort: array => dispatch(sortUsers(array)),
+    closeModal: () => dispatch(closeModal()),
+    deleteUser: () => dispatch(deleteUsers()),
+    fetchAllUsers: () => dispatch(fetchAllUsers()),
     openModal: () => dispatch(openModal()),
-    closeModal: () => dispatch(closeModal())
+    pageHead: value => dispatch(setPageTitle(value)),
+    searchTerm: value => dispatch(searchUsers(value)),
+    sendRole: value => dispatch(setRole(value)),
+    setUserId: id => dispatch(setUserId(id)),
+    sort: array => dispatch(sortUsers(array))
   };
 };
 

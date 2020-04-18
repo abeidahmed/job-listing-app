@@ -1,9 +1,11 @@
 import {
   ALL_USERS_FETCH_ERROR,
+  CLEAR_USER_ID,
   FETCH_ALL_USERS,
   USERS_LOADING,
   SEARCH_USERS,
   SET_USER_ROLE,
+  SET_USER_ID,
   SORT_USERS
 } from "actions/types";
 
@@ -13,7 +15,8 @@ const initialState = {
   error: [],
   role: "",
   searchTerm: "",
-  sortBy: ""
+  sortBy: "",
+  userId: ""
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -51,6 +54,16 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         sortBy: action.payload
+      };
+    case SET_USER_ID:
+      return {
+        ...state,
+        userId: action.payload
+      };
+    case CLEAR_USER_ID:
+      return {
+        ...state,
+        userId: ""
       };
     default:
       return state;

@@ -1,5 +1,6 @@
 import {
   ALL_USERS_FETCH_ERROR,
+  CLEAR_USER_ID,
   CURRENT_USER_FETCH_ERROR,
   FETCH_ALL_USERS,
   USERS_LOADING,
@@ -8,6 +9,7 @@ import {
   POST_USER_DATA,
   SEARCH_USERS,
   SET_USER_ROLE,
+  SET_USER_ID,
   SORT_USERS
 } from "./types";
 
@@ -78,5 +80,19 @@ export const sortUsers = value => {
   return {
     type: SORT_USERS,
     payload: value
+  };
+};
+
+export const setUserId = id => {
+  return {
+    type: SET_USER_ID,
+    payload: id
+  };
+};
+
+export const clearUserId = () => {
+  return {
+    type: CLEAR_USER_ID,
+    payload: ""
   };
 };

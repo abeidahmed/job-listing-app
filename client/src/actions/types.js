@@ -28,3 +28,5 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const SET_USER_ROLE = "SET_USER_ROLE";
 export const SEARCH_USERS = "SEARCH_USERS";
 export const SORT_USERS = "SORT_USERS";
+export const SET_USER_ID = "SET_USER_ID";
+export const CLEAR_USER_ID = "CLEAR_USER_ID";
