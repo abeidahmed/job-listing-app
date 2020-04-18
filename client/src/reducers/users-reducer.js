@@ -6,6 +6,7 @@ import {
   SEARCH_USERS,
   SET_USER_ROLE,
   SET_USER_ID,
+  SET_USERS_PAGE,
   SORT_USERS
 } from "actions/types";
 
@@ -16,7 +17,16 @@ const initialState = {
   role: "",
   searchTerm: "",
   sortBy: "",
-  userId: ""
+  userId: "",
+  totalPages: "",
+  page: 1,
+  limit: "",
+  totalUsers: "",
+  pagingCounter: 1,
+  hasPrevPage: false,
+  hasNextPage: false,
+  prevPage: "",
+  nextPage: ""
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -24,9 +34,18 @@ export const usersReducer = (state = initialState, action) => {
     case FETCH_ALL_USERS:
       return {
         ...state,
-        users: action.payload,
+        users: action.payload.users,
         error: [],
-        isLoading: false
+        isLoading: false,
+        totalPages: action.payload.totalPages,
+        page: action.payload.page,
+        limit: action.payload.limit,
+        totalUsers: action.payload.totalUsers,
+        pagingCounter: action.payload.pagingCounter,
+        hasPrevPage: action.payload.hasPrevPage,
+        hasNextPage: action.payload.hasNextPage,
+        prevPage: action.payload.prevPage,
+        nextPage: action.payload.nextPage
       };
     case ALL_USERS_FETCH_ERROR:
       return {
@@ -64,6 +83,11 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         userId: ""
+      };
+    case SET_USERS_PAGE:
+      return {
+        ...state,
+        page: action.payload
       };
     default:
       return state;

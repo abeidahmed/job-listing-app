@@ -88,10 +88,10 @@ router.get("/currentUser", auth, async (req, res) => {
  */
 router.get("/allUsers", isAdmin, async (req, res) => {
   const sort = {};
-  const { role, name } = req.query;
+  const { role, name, sortBy, page, perPage } = req.query;
 
-  if (req.query.sortBy) {
-    const parts = req.query.sortBy.split("_");
+  if (sortBy) {
+    const parts = sortBy.split("_");
     sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
   }
 
@@ -105,12 +105,19 @@ router.get("/allUsers", isAdmin, async (req, res) => {
     })
   };
 
+  const options = {
+    limit: parseInt(perPage) || 3,
+    page: parseInt(page) || 1,
+    sort,
+    customLabels: {
+      totalDocs: "totalUsers",
+      docs: "users"
+    }
+  };
+
   try {
-    const users = await User.find(match, null, {
-      sort,
-      limit: parseInt(req.query.limit),
-      skip: parseInt(req.query.skip)
-    });
+    const users = await User.paginate(match, options);
+
     res.send(users);
   } catch (err) {
     res.status(500).send();

@@ -10,6 +10,7 @@ import {
   SEARCH_USERS,
   SET_USER_ROLE,
   SET_USER_ID,
+  SET_USERS_PAGE,
   SORT_USERS
 } from "./types";
 
@@ -94,5 +95,12 @@ export const clearUserId = () => {
   return {
     type: CLEAR_USER_ID,
     payload: ""
+  };
+};
+
+export const setUsersPage = page => {
+  return {
+    type: SET_USERS_PAGE,
+    payload: page
   };
 };

@@ -9,7 +9,7 @@ import { deleteUsers, fetchAllUsers } from "api/user";
 import Icon from "components/icon";
 import Modal from "components/modal";
 import { setPageTitle } from "actions/page-head";
-import { Pagination } from "components/pagination";
+import Pagination from "./components/pagination";
 import { SearchField } from "./components/search-field";
 import { Table } from "components/table";
 import { TableBody } from "./components/table-body";
@@ -22,6 +22,7 @@ const UserList = ({
   deleteUser,
   error,
   isLoading,
+  page,
   pageHead,
   fetchAllUsers,
   openModal,
@@ -51,7 +52,7 @@ const UserList = ({
     };
 
     fetchUsers();
-  }, [fetchAllUsers, userId, role, searchValue, sortByNameState, sortByJoinDate]);
+  }, [fetchAllUsers, page, userId, role, searchValue, sortByNameState, sortByJoinDate]);
 
   return (
     <AdminContainer>
@@ -86,11 +87,12 @@ const UserList = ({
 };
 
 const mapStateToProps = state => {
-  const { users, userId, isLoading, error, role, searchTerm, sortBy } = state.usersReducer;
+  const { users, page, userId, isLoading, error, role, searchTerm, sortBy } = state.usersReducer;
   return {
     allUsers: users,
     error,
     isLoading,
+    page,
     role,
     searchValue: searchTerm,
     sortName: sortBy,

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const mongoosePaginate = require("mongoose-paginate-v2");
 const validator = require("validator");
 
 const userSchema = new mongoose.Schema(
@@ -66,6 +67,9 @@ userSchema.methods.toJSON = function() {
 
   return userObject;
 };
+
+// mongoose paginate
+userSchema.plugin(mongoosePaginate);
 
 // generate a jwt token and concat it to user collection
 userSchema.methods.generateAuthToken = async function() {

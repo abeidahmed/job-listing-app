@@ -132,9 +132,9 @@ const Button = css`
         padding-left: 4px;
         margin-right: -2px;
       }
-    `}
+    `};
 `;
 
 export const StyledButton = styled.button`
-  ${Button}
+  ${Button};
 `;

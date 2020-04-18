@@ -4,14 +4,15 @@ import { authToken } from "middleware/auth-token";
 import { usersFetchError, getAllUsersAction, usersLoading } from "actions/user-action";
 
 export const fetchAllUsers = () => (dispatch, getState) => {
-  const { role, searchTerm, sortBy } = getState().usersReducer;
+  const { role, searchTerm, sortBy, page } = getState().usersReducer;
   const url = queryString.stringifyUrl(
     {
       url: "/api/v1/allUsers",
       query: {
         role,
         name: searchTerm,
-        sortBy
+        sortBy,
+        page
       }
     },
     { skipEmptyString: true }

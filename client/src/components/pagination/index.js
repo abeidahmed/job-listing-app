@@ -4,7 +4,12 @@ import { Para, Span } from "components/typography";
 import { StyledButton } from "components/button";
 import { PagiMobile, PaginationText, PaginationWrapper, PaginationContainer } from "./style";
 
-export const Pagination = () => {
+export const Pagination = ({ totalPages }) => {
+  let pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <PaginationWrapper>
       <PagiMobile>
@@ -40,13 +45,9 @@ export const Pagination = () => {
         <button>
           <Icon glyph="chevron-left" width="20" height="20" />
         </button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <span>...</span>
-        <button>6</button>
-        <button>7</button>
-        <button>8</button>
+        {pageNumbers.map(pageNumber => (
+          <button>{pageNumber}</button>
+        ))}
         <button>
           <Icon glyph="chevron-right" width="20" height="20" />
         </button>
