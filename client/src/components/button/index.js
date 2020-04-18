@@ -13,6 +13,7 @@ const Button = css`
   transition: 150ms all ease-in;
   white-space: nowrap;
   box-shadow: ${props => props.theme.shadow.xsmall};
+  font-weight: 500;
 
   ${props => props.block && "width: 100%"};
 
@@ -57,7 +58,7 @@ const Button = css`
       case "bordered":
         return css`
           background-color: white;
-          color: ${props => props.theme.color.gray800};
+          color: ${props => props.theme.color.gray700};
           border-color: ${props => props.theme.color.gray300};
           &:hover,
           &:focus {
@@ -120,14 +121,16 @@ const Button = css`
     css`
       svg {
         padding-right: 4px;
+        margin-left: -2px;
       }
     `};
 
   ${props =>
     props.iconRight &&
     css`
-      dvg {
+      svg {
         padding-left: 4px;
+        margin-right: -2px;
       }
     `}
 `;
