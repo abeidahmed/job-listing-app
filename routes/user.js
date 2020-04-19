@@ -12,12 +12,32 @@ const User = require("../models/user");
 router.post("/signup", async (req, res) => {
   const user = new User(req.body);
 
+  if (req.body.role !== "User") {
+    return res.send({ message: "Unrecognized field set." });
+  }
+
   try {
     await user.save();
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (err) {
     res.status(400).send(err.message);
+  }
+});
+
+/**
+ * @type POST
+ * @description Create user by admins
+ * @access PRIVATE, only admin
+ */
+router.post("/createUser", isAdmin, async (req, res) => {
+  const user = new User(req.body);
+
+  try {
+    await user.save;
+    res.status(201).send(user);
+  } catch (err) {
+    res.status(400).send({ message: err.message });
   }
 });
 
