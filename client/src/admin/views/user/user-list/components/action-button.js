@@ -5,7 +5,7 @@ import { RoleDropdown } from "./role-dropdown";
 import { StyledButton } from "components/button";
 import { ActionContainer, RoleSelect } from "./style";
 
-export const ActionButton = ({ sendRole }) => {
+export const ActionButton = ({ setAddModal, sendRole }) => {
   const [isActive, setIsActive] = useState(false);
   const [name, setName] = useState("All users");
   return (
@@ -20,7 +20,7 @@ export const ActionButton = ({ sendRole }) => {
         </Dropdown>
       </RoleSelect>
       <div>
-        <StyledButton color="primary" size="sm">
+        <StyledButton color="primary" size="sm" onClick={() => setAddModal(true)}>
           Add user
         </StyledButton>
       </div>

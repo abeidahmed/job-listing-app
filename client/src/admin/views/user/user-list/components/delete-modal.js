@@ -53,10 +53,10 @@ const Button = styled(StyledButton)`
   `}
 `;
 
-export const DeleteModal = ({ closeModal, deleteUser }) => {
+export const DeleteModal = ({ setDeleteModal, deleteUser }) => {
   const handleDelete = async () => {
     await deleteUser();
-    closeModal();
+    setDeleteModal(false);
   };
 
   return (
@@ -81,7 +81,7 @@ export const DeleteModal = ({ closeModal, deleteUser }) => {
         <Button onClick={handleDelete} size="sm" color="danger">
           Delete
         </Button>
-        <Button onClick={closeModal} size="sm" color="bordered">
+        <Button onClick={() => setDeleteModal(false)} size="sm" color="bordered">
           Cancel
         </Button>
       </ModalBottom>

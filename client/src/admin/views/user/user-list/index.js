@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { searchUsers, setRole, setUserId, sortUsers } from "actions/user-action";
 import { ActionButton } from "./components/action-button";
+import AddModal from "./components/add-modal";
 import { AdminContainer } from "components/layout";
-import { closeModal, openModal } from "actions/modal";
 import { DeleteModal } from "./components/delete-modal";
 import { deleteUsers, fetchAllUsers } from "api/user";
 import Icon from "components/icon";
@@ -18,14 +18,12 @@ import { Spinner, PageHeadWrapper, MainContent } from "./style";
 
 const UserList = ({
   allUsers,
-  closeModal,
   deleteUser,
   error,
   isLoading,
   page,
   pageHead,
   fetchAllUsers,
-  openModal,
   role,
   searchTerm,
   searchValue,
@@ -34,6 +32,8 @@ const UserList = ({
   sort,
   userId
 }) => {
+  const [addModal, setAddModal] = useState(true);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [sortByNameState, setSortByNameState] = useState(false);
   const [sortByJoinDate, setSortByJoinDate] = useState(false);
 
@@ -56,12 +56,15 @@ const UserList = ({
 
   return (
     <AdminContainer>
-      <Modal onOutsideClick={closeModal}>
-        <DeleteModal closeModal={closeModal} deleteUser={deleteUser} />
+      <Modal onOutsideClick={() => setAddModal(false)} isActive={addModal}>
+        <AddModal setAddModal={setAddModal} />
+      </Modal>
+      <Modal onOutsideClick={() => setDeleteModal(false)} isActive={deleteModal}>
+        <DeleteModal setDeleteModal={setDeleteModal} deleteUser={deleteUser} />
       </Modal>
       <PageHeadWrapper>
         <SearchField searchTerm={searchTerm} searchValue={searchValue} />
-        <ActionButton sendRole={sendRole} />
+        <ActionButton sendRole={sendRole} setAddModal={setAddModal} />
       </PageHeadWrapper>
       {isLoading || error.length !== 0 ? (
         <Spinner>
@@ -77,7 +80,7 @@ const UserList = ({
               sortByJoinDate={sortByJoinDate}
               setSortByJoinDate={setSortByJoinDate}
             />
-            <TableBody allUsers={allUsers} openModal={openModal} setUserId={setUserId} />
+            <TableBody allUsers={allUsers} openModal={setDeleteModal} setUserId={setUserId} />
           </Table>
           <Pagination />
         </MainContent>
@@ -102,10 +105,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeModal: () => dispatch(closeModal()),
     deleteUser: () => dispatch(deleteUsers()),
     fetchAllUsers: () => dispatch(fetchAllUsers()),
-    openModal: () => dispatch(openModal()),
     pageHead: value => dispatch(setPageTitle(value)),
     searchTerm: value => dispatch(searchUsers(value)),
     sendRole: value => dispatch(setRole(value)),

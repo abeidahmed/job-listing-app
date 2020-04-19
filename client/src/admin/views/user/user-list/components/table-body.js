@@ -29,7 +29,7 @@ export const TableBody = ({ allUsers, openModal, setUserId }) => {
             <button
               onClick={() => {
                 setUserId(user._id);
-                openModal();
+                openModal(true);
               }}
             >
               Delete
