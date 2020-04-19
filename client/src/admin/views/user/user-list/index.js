@@ -71,9 +71,8 @@ const UserList = ({
 };
 
 const mapStateToProps = state => {
-  const { users, page, userId, isLoading, error, role, searchTerm, sortBy } = state.usersReducer;
+  const { page, userId, isLoading, error, role, searchTerm, sortBy } = state.usersReducer;
   return {
-    allUsers: users,
     error,
     isLoading,
     page,

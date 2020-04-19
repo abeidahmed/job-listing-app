@@ -52,7 +52,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    openModal: (modalType, modalProps) => dispatch(openModal(modalType, modalProps)),
+    openModal: modalType => dispatch(openModal(modalType)),
     setUserId: id => dispatch(setUserId(id))
   };
 };

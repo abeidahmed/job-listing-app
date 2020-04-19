@@ -126,7 +126,7 @@ router.get("/allUsers", isAdmin, async (req, res) => {
   };
 
   const options = {
-    limit: parseInt(perPage) || 3,
+    limit: parseInt(perPage) || 10,
     page: parseInt(page) || 1,
     sort,
     customLabels: {

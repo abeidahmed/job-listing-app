@@ -57,7 +57,7 @@ const Button = styled(StyledButton)`
   `}
 `;
 
-const DeleteModal = ({ closeModal, deleteUser, modalType }) => {
+const DeleteUser = ({ closeModal, deleteUser, modalType }) => {
   const handleDelete = async () => {
     await deleteUser();
     closeModal();
@@ -109,4 +109,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DeleteModal);
+)(DeleteUser);

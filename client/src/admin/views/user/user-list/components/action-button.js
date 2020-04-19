@@ -34,7 +34,7 @@ const ActionButton = ({ openModal, sendRole }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    openModal: (modalType, modalProps) => dispatch(openModal(modalType, modalProps)),
+    openModal: modalType => dispatch(openModal(modalType)),
     sendRole: value => dispatch(setRole(value))
   };
 };
