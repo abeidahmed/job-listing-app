@@ -9,7 +9,6 @@ export const openSidebar = () => {
 
 export const closeSidebar = () => {
   return {
-    type: CLOSE_SIDEBAR,
-    payload: false
+    type: CLOSE_SIDEBAR
   };
 };
