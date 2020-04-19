@@ -54,7 +54,7 @@ const Pagination = ({
           </Span>{" "}
           to{" "}
           <Span weight="medium" size="sm">
-            {(page - 1) * limit + 1}
+            {Math.min((page - 1) * limit + limit, totalUsers)}
           </Span>{" "}
           of{" "}
           <Span weight="medium" size="sm">
