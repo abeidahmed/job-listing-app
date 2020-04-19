@@ -12,6 +12,8 @@ const SearchField = ({ searchValue, searchTerm }) => {
         placeholder="Search"
         size="sm"
         value={searchValue}
+        show={searchValue}
+        reset={searchTerm}
         onChange={e => searchTerm(e.target.value)}
       />
     </SearchWrapper>
