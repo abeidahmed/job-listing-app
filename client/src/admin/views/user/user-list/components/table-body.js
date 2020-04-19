@@ -1,9 +1,12 @@
 import React from "react";
 import moment from "moment";
+import { connect } from "react-redux";
+import { openModal } from "actions/modal";
+import { setUserId } from "actions/user-action";
 import { Tbody, Td, Tr } from "components/table";
 import { UserProfile, NameWrapper } from "./style";
 
-export const TableBody = ({ allUsers, openModal, setUserId }) => {
+const TableBody = ({ allUsers, openModal, setUserId }) => {
   return (
     <Tbody>
       {allUsers.map(user => (
@@ -29,7 +32,7 @@ export const TableBody = ({ allUsers, openModal, setUserId }) => {
             <button
               onClick={() => {
                 setUserId(user._id);
-                openModal(true);
+                openModal("DELETE_USER");
               }}
             >
               Delete
@@ -40,3 +43,21 @@ export const TableBody = ({ allUsers, openModal, setUserId }) => {
     </Tbody>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    allUsers: state.usersReducer.users
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    openModal: (modalType, modalProps) => dispatch(openModal(modalType, modalProps)),
+    setUserId: id => dispatch(setUserId(id))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TableBody);

@@ -1,7 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
+import { sortUsers } from "actions/user-action";
 import { Th, Tr } from "components/table";
 
-export const TableHead = ({
+const TableHead = ({
   sort,
   setSortByNameState,
   sortByNameState,
@@ -37,3 +39,14 @@ export const TableHead = ({
     </thead>
   );
 };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    sort: array => dispatch(sortUsers(array))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(TableHead);

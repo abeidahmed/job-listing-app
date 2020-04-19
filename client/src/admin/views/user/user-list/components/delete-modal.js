@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import { breakpoint } from "utils/breakpoint";
+import { closeModal } from "actions/modal";
+import { deleteUsers } from "api/user/delete-users";
 import Icon from "components/icon";
+import Modal from "components/modal";
 import { ModalTop, ModalBottom } from "components/modal";
 import { H3, Para } from "components/typography";
 import { StyledButton } from "components/button";
@@ -53,14 +57,14 @@ const Button = styled(StyledButton)`
   `}
 `;
 
-export const DeleteModal = ({ setDeleteModal, deleteUser }) => {
+const DeleteModal = ({ closeModal, deleteUser, modalType }) => {
   const handleDelete = async () => {
     await deleteUser();
-    setDeleteModal(false);
+    closeModal();
   };
 
   return (
-    <>
+    <Modal onOutsideClick={closeModal} isActive={modalType === "DELETE_USER"}>
       <ModalTop>
         <TopWrapper>
           <IconWrapper>
@@ -81,10 +85,28 @@ export const DeleteModal = ({ setDeleteModal, deleteUser }) => {
         <Button onClick={handleDelete} size="sm" color="danger">
           Delete
         </Button>
-        <Button onClick={() => setDeleteModal(false)} size="sm" color="bordered">
+        <Button onClick={closeModal} size="sm" color="bordered">
           Cancel
         </Button>
       </ModalBottom>
-    </>
+    </Modal>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    modalType: state.modalReducer.modalType
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    closeModal: () => dispatch(closeModal()),
+    deleteUser: () => dispatch(deleteUsers())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeleteModal);

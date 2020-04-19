@@ -7,6 +7,7 @@ import { fetchCurrentUser } from "api/user";
 import { theme, GlobalStyle } from "./theme";
 import AdminRouter from "admin/routes/admin-router";
 import PublicRouter from "routes/public-router";
+import ModalRoot from "components/modal/modal-parent";
 
 const Routes = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Routes = () => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <ModalRoot />
         <Router>
           <Switch>
             <Route path="/admin" component={AdminRouter} />

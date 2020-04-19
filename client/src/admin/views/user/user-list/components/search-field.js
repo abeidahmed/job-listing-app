@@ -1,8 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+import { searchUsers } from "actions/user-action";
 import { Search } from "components/search";
 import { SearchWrapper } from "./style";
 
-export const SearchField = ({ searchValue, searchTerm }) => {
+const SearchField = ({ searchValue, searchTerm }) => {
   return (
     <SearchWrapper>
       <Search
@@ -15,3 +17,20 @@ export const SearchField = ({ searchValue, searchTerm }) => {
     </SearchWrapper>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    searchValue: state.usersReducer.searchTerm
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    searchTerm: value => dispatch(searchUsers(value))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchField);
