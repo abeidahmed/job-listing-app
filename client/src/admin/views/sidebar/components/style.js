@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { breakpoint } from "utils/breakpoint";
 import { StyledButton } from "components/button";
 
@@ -48,6 +48,18 @@ export const ButtonContainer = styled.div`
   text-decoration: none;
   justify-content: space-between;
   cursor: pointer;
+
+  > svg {
+    transition: 150ms all ease-in-out;
+  }
+
+  ${props =>
+    props.isActive &&
+    css`
+      > svg {
+        transform: rotate(90deg);
+      }
+    `}
 `;
 
 export const InnerDropdown = styled.div`

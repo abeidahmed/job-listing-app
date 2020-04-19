@@ -11,48 +11,87 @@ import {
 } from "./style";
 
 const Links = () => {
-  const [drop1, setDrop1] = useState(false);
-  const [drop2, setDrop2] = useState(false);
+  const [active, setActive] = useState({});
+
+  const handleClick = menu => {
+    setActive(prevState => {
+      const clicked = { ...prevState };
+
+      clicked[menu] = !clicked[menu];
+      return clicked;
+    });
+  };
+
+  const linkArray = [
+    {
+      name: "Dashboard",
+      icon: "home",
+      path: "/"
+    },
+    {
+      name: "Jobs",
+      icon: "briefcase",
+      path: "/",
+      multiple: [
+        {
+          name: "View jobs",
+          path: "/"
+        },
+        {
+          name: "Post new job",
+          path: "/"
+        }
+      ]
+    },
+    {
+      name: "Events",
+      icon: "calendar",
+      path: "/",
+      multiple: [
+        {
+          name: "View events",
+          path: "/"
+        },
+        {
+          name: "Post new event",
+          path: "/"
+        }
+      ]
+    },
+    {
+      name: "Users",
+      icon: "users",
+      path: "/"
+    }
+  ];
+
   return (
     <Nav>
-      <LinkWrapper href="/">
-        <Icon glyph="home" color="#9fa6b2" />
-        <LinkText>Dashboard</LinkText>
-      </LinkWrapper>
-      <LinkContainer>
-        <ButtonContainer onClick={() => setDrop1(!drop1)}>
-          <LinkTextWrapper>
-            <Icon glyph="briefcase" color="#9FA6B2" />
-            <LinkText>Jobs</LinkText>
-          </LinkTextWrapper>
-          <p>
-            <Icon glyph={drop1 ? "chevron-down" : "chevron-right"} color="#9FA6B2" />
-          </p>
-        </ButtonContainer>
-        <InnerDropdown isActive={drop1}>
-          <a href="/">View jobs</a>
-          <a href="/">Post new job</a>
-        </InnerDropdown>
-      </LinkContainer>
-      <LinkContainer>
-        <ButtonContainer onClick={() => setDrop2(!drop2)}>
-          <LinkTextWrapper>
-            <Icon glyph="calendar" color="#9FA6B2" />
-            <LinkText>Events</LinkText>
-          </LinkTextWrapper>
-          <p>
-            <Icon glyph={drop2 ? "chevron-down" : "chevron-right"} color="#9FA6B2" />
-          </p>
-        </ButtonContainer>
-        <InnerDropdown isActive={drop2}>
-          <a href="/">View events</a>
-          <a href="/">Post new event</a>
-        </InnerDropdown>
-      </LinkContainer>
-      <LinkWrapper href="/">
-        <Icon glyph="users" color="#9fa6b2" />
-        <LinkText>Users</LinkText>
-      </LinkWrapper>
+      {linkArray.map(link =>
+        !link.hasOwnProperty("multiple") ? (
+          <LinkWrapper key={link.name} href={link.path}>
+            <Icon glyph={link.icon} color="#9fa6b2" />
+            <LinkText>{link.name}</LinkText>
+          </LinkWrapper>
+        ) : (
+          <LinkContainer key={link.name}>
+            <ButtonContainer onClick={() => handleClick(link.name)} isActive={active[link.name]}>
+              <LinkTextWrapper>
+                <Icon glyph={link.icon} color="#9FA6B2" />
+                <LinkText>{link.name}</LinkText>
+              </LinkTextWrapper>
+              <Icon glyph="chevron-right" color="#9FA6B2" />
+            </ButtonContainer>
+            <InnerDropdown isActive={active[link.name]}>
+              {link.multiple.map(subLink => (
+                <a key={subLink.name} href={subLink.path}>
+                  {subLink.name}
+                </a>
+              ))}
+            </InnerDropdown>
+          </LinkContainer>
+        )
+      )}
     </Nav>
   );
 };
