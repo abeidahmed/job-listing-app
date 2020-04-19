@@ -8,7 +8,6 @@ export const pageHeadReducer = (state = initialState, action) => {
   switch (action.type) {
     case PAGE_HEAD:
       return {
-        ...state,
         pageHead: action.payload
       };
     default:

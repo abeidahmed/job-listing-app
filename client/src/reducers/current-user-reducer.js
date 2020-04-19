@@ -17,7 +17,6 @@ export const currentUserReducer = (state = initialState, action) => {
     case POST_USER_DATA:
       localStorage.setItem("token", action.payload.token);
       return {
-        ...state,
         error: [],
         currentUser: action.payload.user,
         token: action.payload.token,
@@ -26,7 +25,6 @@ export const currentUserReducer = (state = initialState, action) => {
     case CURRENT_USER_FETCH_ERROR:
       localStorage.removeItem("token");
       return {
-        ...state,
         currentUser: [],
         token: null,
         error: action.payload,
@@ -40,7 +38,6 @@ export const currentUserReducer = (state = initialState, action) => {
     case LOGOUT_USER:
       localStorage.removeItem("token");
       return {
-        ...state,
         isLoading: false,
         token: null,
         currentUser: [],

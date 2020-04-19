@@ -8,13 +8,11 @@ export const sidebarReducer = (state = initialState, action) => {
   switch (action.type) {
     case OPEN_SIDEBAR:
       return {
-        ...state,
         isActive: action.payload
       };
     case CLOSE_SIDEBAR:
       return {
-        ...state,
-        isActive: action.payload
+        initialState
       };
     default:
       return state;

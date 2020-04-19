@@ -27,7 +27,8 @@ const Form = ({ postUser }) => {
           firstName,
           lastName,
           email,
-          password
+          password,
+          role: "User"
         },
         { withCredentials: true }
       )
