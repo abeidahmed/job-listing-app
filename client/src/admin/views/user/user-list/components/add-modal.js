@@ -7,7 +7,7 @@ import { Col } from "components/layout";
 import { H3, Para } from "components/typography";
 import Modal from "components/modal";
 import { ModalTop, ModalBottom } from "components/modal";
-import { InputField } from "components/field";
+import { InputField, StyledSelect } from "components/field";
 import { StyledButton } from "components/button";
 
 const FormContainer = styled.div`
@@ -83,6 +83,20 @@ const AddUserModal = ({ closeModal, modalType }) => {
               </Col>
               <Col md="70%">
                 <Input id="admin_add_user3" size="sm" type="email" required />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col md="30%">
+                <Para size="sm">
+                  <label htmlFor="admin_add_user5">Role</label>
+                </Para>
+              </Col>
+              <Col md="70%">
+                <StyledSelect size="sm" id="admin_add_user5">
+                  <option value="Admin">Admin</option>
+                  <option value="Employer">Employer</option>
+                  <option value="User">User</option>
+                </StyledSelect>
               </Col>
             </FormGroup>
             <FormGroup>
