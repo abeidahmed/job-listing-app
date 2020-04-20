@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoint } from "utils/breakpoint";
 import { zIndex } from "helpers/z-index";
 
 export const Main = styled.aside`
@@ -20,4 +21,9 @@ export const Main = styled.aside`
     transition: 150ms all ease-in-out;
     transform: ${props => (props.isActive ? "translateX(0)" : "translateX(-100%)")};
   }
+
+  ${breakpoint.lg`
+    position: sticky;
+    top: 0;
+  `}
 `;
