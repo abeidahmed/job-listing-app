@@ -3,7 +3,7 @@ import { authToken } from "middleware/auth-token";
 import { clearUserId } from "actions/user-action";
 
 export const deleteUsers = () => (dispatch, getState) => {
-  const id = getState().modalReducer.modalProps;
+  const id = getState().usersReducer.userId;
   axios
     .delete(`/api/v1/user/${id}`, authToken(getState))
     .then(() => dispatch(clearUserId()))
