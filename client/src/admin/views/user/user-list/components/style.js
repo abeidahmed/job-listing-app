@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { breakpoint } from "utils/breakpoint";
+import { InputField } from "components/field";
+import { Para } from "components/typography";
+import { StyledButton } from "components/button";
 
 // search bar
 export const SearchWrapper = styled.div`
@@ -124,4 +127,89 @@ export const PaginationContainer = styled.ul`
       background-color: white;
     }
     `}
+`;
+
+// add modal
+export const FormContainer = styled.div`
+  margin-top: 24px;
+  > div:not(:first-child) {
+    margin-top: 20px;
+  }
+`;
+
+export const FormGroup = styled.div`
+  ${breakpoint.md`
+    display: flex;
+  `}
+`;
+
+export const Input = styled(InputField)`
+  margin-top: 4px;
+  ${breakpoint.md`
+    margin-top: 0;
+  `}
+`;
+
+export const Button = styled(StyledButton)`
+  display: block;
+  width: 100%;
+  &:not(:first-child) {
+    margin-top: 12px;
+  }
+
+  ${breakpoint.sm`
+    width: auto;
+    &:not(:first-child) {
+      margin-top: 0;
+      margin-right: 16px;
+    }
+  `}
+`;
+
+// delete modal
+export const TopWrapper = styled.div`
+  text-align: center;
+  ${breakpoint.sm`
+    display: flex;
+    text-align: left;
+  `}
+`;
+
+export const ModalText = styled.div`
+  margin-top: 20px;
+  ${breakpoint.sm`
+    margin-left: 16px;
+    margin-top: 0;
+  `}
+`;
+
+export const IconWrapper = styled.div`
+  height: 40px;
+  width: 40px;
+  border-radius: 99999px;
+  background-color: ${props => props.theme.color.red300};
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+`;
+
+export const StyledPara = styled(Para)`
+  margin-top: 8px;
+`;
+
+export const DeleteButton = styled(StyledButton)`
+  display: block;
+  width: 100%;
+  &:not(:first-child) {
+    margin-top: 12px;
+  }
+
+  ${breakpoint.sm`
+    width: auto;
+    &:not(:first-child) {
+      margin-top: 0;
+      margin-right: 16px;
+    }
+  `}
 `;

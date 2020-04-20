@@ -1,52 +1,14 @@
 import React from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
-import { breakpoint } from "utils/breakpoint";
 import { createUserByAdmin } from "api/user";
 import { closeModal } from "actions/modal";
 import { Col } from "components/layout";
 import { H3, Para } from "components/typography";
 import Modal from "components/modal";
 import { ModalTop, ModalBottom } from "components/modal";
-import { InputField, StyledSelect } from "components/field";
-import { setFirstName, setLastName, setEmail, setRole, setPassword } from "actions/create-user";
-import { StyledButton } from "components/button";
-
-const FormContainer = styled.div`
-  margin-top: 24px;
-  > div:not(:first-child) {
-    margin-top: 20px;
-  }
-`;
-
-const FormGroup = styled.div`
-  ${breakpoint.md`
-    display: flex;
-  `}
-`;
-
-const Input = styled(InputField)`
-  margin-top: 4px;
-  ${breakpoint.md`
-    margin-top: 0;
-  `}
-`;
-
-const Button = styled(StyledButton)`
-  display: block;
-  width: 100%;
-  &:not(:first-child) {
-    margin-top: 12px;
-  }
-
-  ${breakpoint.sm`
-    width: auto;
-    &:not(:first-child) {
-      margin-top: 0;
-      margin-right: 16px;
-    }
-  `}
-`;
+import { StyledSelect } from "components/field";
+import { setUserData } from "actions/create-user";
+import { FormContainer, FormGroup, Input, Button } from "./style";
 
 const AddUserModal = ({
   closeModal,
@@ -56,12 +18,8 @@ const AddUserModal = ({
   email,
   role,
   password,
-  sendFirstName,
-  sendLastName,
-  sendEmail,
-  sendRole,
-  sendPassword,
-  postUser
+  postUser,
+  setValue
 }) => {
   const handleSubmit = async e => {
     e.preventDefault();
@@ -89,7 +47,7 @@ const AddUserModal = ({
                   type="text"
                   required
                   value={firstName}
-                  onChange={e => sendFirstName(e.target.value)}
+                  onChange={e => setValue("firstName", e.target.value)}
                 />
               </Col>
             </FormGroup>
@@ -106,7 +64,7 @@ const AddUserModal = ({
                   type="text"
                   required
                   value={lastName}
-                  onChange={e => sendLastName(e.target.value)}
+                  onChange={e => setValue("lastName", e.target.value)}
                 />
               </Col>
             </FormGroup>
@@ -123,7 +81,7 @@ const AddUserModal = ({
                   type="email"
                   required
                   value={email}
-                  onChange={e => sendEmail(e.target.value)}
+                  onChange={e => setValue("email", e.target.value)}
                 />
               </Col>
             </FormGroup>
@@ -138,7 +96,7 @@ const AddUserModal = ({
                   size="sm"
                   id="admin_add_user5"
                   value={role}
-                  onChange={e => sendRole(e.target.value)}
+                  onChange={e => setValue("role", e.target.value)}
                 >
                   <option value="Admin">Admin</option>
                   <option value="Employer">Employer</option>
@@ -159,7 +117,7 @@ const AddUserModal = ({
                   type="password"
                   required
                   value={password}
-                  onChange={e => sendPassword(e.target.value)}
+                  onChange={e => setValue("password", e.target.value)}
                 />
               </Col>
             </FormGroup>
@@ -194,11 +152,7 @@ const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
     postUser: () => dispatch(createUserByAdmin()),
-    sendFirstName: value => dispatch(setFirstName(value)),
-    sendLastName: value => dispatch(setLastName(value)),
-    sendEmail: value => dispatch(setEmail(value)),
-    sendRole: value => dispatch(setRole(value)),
-    sendPassword: value => dispatch(setPassword(value))
+    setValue: (field, value) => dispatch(setUserData(field, value))
   };
 };
 

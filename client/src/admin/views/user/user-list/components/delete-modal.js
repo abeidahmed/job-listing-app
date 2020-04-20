@@ -1,61 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
-import { breakpoint } from "utils/breakpoint";
 import { closeModal } from "actions/modal";
 import { deleteUsers } from "api/user/delete-users";
 import Icon from "components/icon";
 import Modal from "components/modal";
 import { ModalTop, ModalBottom } from "components/modal";
-import { H3, Para } from "components/typography";
-import { StyledButton } from "components/button";
-
-const TopWrapper = styled.div`
-  text-align: center;
-  ${breakpoint.sm`
-    display: flex;
-    text-align: left;
-  `}
-`;
-
-const ModalText = styled.div`
-  margin-top: 20px;
-  ${breakpoint.sm`
-    margin-left: 16px;
-    margin-top: 0;
-  `}
-`;
-
-const IconWrapper = styled.div`
-  height: 40px;
-  width: 40px;
-  border-radius: 99999px;
-  background-color: ${props => props.theme.color.red300};
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-`;
-
-const StyledPara = styled(Para)`
-  margin-top: 8px;
-`;
-
-const Button = styled(StyledButton)`
-  display: block;
-  width: 100%;
-  &:not(:first-child) {
-    margin-top: 12px;
-  }
-
-  ${breakpoint.sm`
-    width: auto;
-    &:not(:first-child) {
-      margin-top: 0;
-      margin-right: 16px;
-    }
-  `}
-`;
+import { H3 } from "components/typography";
+import { TopWrapper, ModalText, IconWrapper, StyledPara, DeleteButton } from "./style";
 
 const DeleteUser = ({ closeModal, deleteUser, modalType }) => {
   const handleDelete = async () => {
@@ -82,12 +33,12 @@ const DeleteUser = ({ closeModal, deleteUser, modalType }) => {
         </TopWrapper>
       </ModalTop>
       <ModalBottom>
-        <Button onClick={handleDelete} size="sm" color="danger">
+        <DeleteButton onClick={handleDelete} size="sm" color="danger">
           Delete
-        </Button>
-        <Button onClick={closeModal} size="sm" color="bordered">
+        </DeleteButton>
+        <DeleteButton onClick={closeModal} size="sm" color="bordered">
           Cancel
-        </Button>
+        </DeleteButton>
       </ModalBottom>
     </Modal>
   );
