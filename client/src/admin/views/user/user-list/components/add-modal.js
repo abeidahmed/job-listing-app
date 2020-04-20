@@ -24,6 +24,7 @@ const AddUserModal = ({
   const handleSubmit = async e => {
     e.preventDefault();
     await postUser();
+    closeModal();
   };
 
   return (

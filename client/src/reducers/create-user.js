@@ -1,4 +1,4 @@
-import { SET_USER_DATA } from "actions/types";
+import { CLEAR_USER_DATA, SET_USER_DATA } from "actions/types";
 
 const initialState = {
   firstName: "",
@@ -14,6 +14,10 @@ export const createUser = (state = initialState, action) => {
       return {
         ...state,
         [action.field]: action.payload
+      };
+    case CLEAR_USER_DATA:
+      return {
+        initialState
       };
     default:
       return state;
