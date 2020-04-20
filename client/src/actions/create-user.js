@@ -1,4 +1,4 @@
-import { CLEAR_USER_DATA, SET_USER_DATA } from "./types";
+import { CLEAR_USER_DATA, SET_USER_DATA, INCREMENT_TOTAL_USER } from "./types";
 
 export const setUserData = (field, value) => {
   return {
@@ -11,5 +11,11 @@ export const setUserData = (field, value) => {
 export const clearUserData = () => {
   return {
     type: CLEAR_USER_DATA
+  };
+};
+
+export const incrementUserCount = () => {
+  return {
+    type: INCREMENT_TOTAL_USER
   };
 };

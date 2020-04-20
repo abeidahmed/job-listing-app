@@ -20,6 +20,7 @@ const UserList = ({
   fetchAllUsers,
   role,
   searchValue,
+  totalUsers,
   userId
 }) => {
   const [sortByNameState, setSortByNameState] = useState(false);
@@ -40,7 +41,7 @@ const UserList = ({
     };
 
     fetchUsers();
-  }, [fetchAllUsers, page, userId, role, searchValue, sortByNameState, sortByJoinDate]);
+  }, [fetchAllUsers, page, userId, role, searchValue, sortByNameState, sortByJoinDate, totalUsers]);
 
   return (
     <AdminContainer>
@@ -71,7 +72,16 @@ const UserList = ({
 };
 
 const mapStateToProps = state => {
-  const { page, userId, isLoading, error, role, searchTerm, sortBy } = state.usersReducer;
+  const {
+    page,
+    userId,
+    isLoading,
+    error,
+    role,
+    searchTerm,
+    sortBy,
+    totalUsers
+  } = state.usersReducer;
   return {
     error,
     isLoading,
@@ -79,6 +89,7 @@ const mapStateToProps = state => {
     role,
     searchValue: searchTerm,
     sortName: sortBy,
+    totalUsers,
     userId
   };
 };

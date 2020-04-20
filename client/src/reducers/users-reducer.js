@@ -5,6 +5,7 @@ import {
   FETCH_ALL_USERS,
   USERS_LOADING,
   SEARCH_USERS,
+  INCREMENT_TOTAL_USER,
   SET_USER_ROLE,
   SET_USER_ID,
   SET_USERS_PAGE,
@@ -94,6 +95,11 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         page: action.payload
+      };
+    case INCREMENT_TOTAL_USER:
+      return {
+        ...state,
+        totalUsers: state.totalUsers + 1
       };
     default:
       return state;

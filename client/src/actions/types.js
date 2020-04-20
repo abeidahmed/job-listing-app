@@ -32,6 +32,7 @@ export const SET_USER_ID = "SET_USER_ID";
 export const CLEAR_USER_ID = "CLEAR_USER_ID";
 export const SET_USERS_PAGE = "SET_USERS_PAGE";
 export const CREATE_USER = "CREATE_USER";
+export const INCREMENT_TOTAL_USER = "INCREMENT_TOTAL_USER";
 
 /**
  * @type Admin creates user
