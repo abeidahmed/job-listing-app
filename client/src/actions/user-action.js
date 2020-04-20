@@ -1,8 +1,8 @@
 import {
   ALL_USERS_FETCH_ERROR,
-  CLEAR_USER_ID,
   CREATE_USER,
   CURRENT_USER_FETCH_ERROR,
+  DECREMENT_TOTAL_USER,
   FETCH_ALL_USERS,
   USERS_LOADING,
   CURRENT_USER_LOADING,
@@ -10,7 +10,6 @@ import {
   POST_USER_DATA,
   SEARCH_USERS,
   SET_USER_ROLE,
-  SET_USER_ID,
   SET_USERS_PAGE,
   SORT_USERS
 } from "./types";
@@ -85,20 +84,6 @@ export const sortUsers = value => {
   };
 };
 
-export const setUserId = id => {
-  return {
-    type: SET_USER_ID,
-    payload: id
-  };
-};
-
-export const clearUserId = () => {
-  return {
-    type: CLEAR_USER_ID,
-    payload: ""
-  };
-};
-
 export const setUsersPage = page => {
   return {
     type: SET_USERS_PAGE,
@@ -110,5 +95,11 @@ export const createUser = user => {
   return {
     type: CREATE_USER,
     payload: user
+  };
+};
+
+export const decrementUserCount = () => {
+  return {
+    type: DECREMENT_TOTAL_USER
   };
 };

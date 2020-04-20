@@ -1,13 +1,12 @@
 import {
   ALL_USERS_FETCH_ERROR,
-  CLEAR_USER_ID,
   CREATE_USER,
+  DECREMENT_TOTAL_USER,
   FETCH_ALL_USERS,
   USERS_LOADING,
   SEARCH_USERS,
   INCREMENT_TOTAL_USER,
   SET_USER_ROLE,
-  SET_USER_ID,
   SET_USERS_PAGE,
   SORT_USERS
 } from "actions/types";
@@ -19,7 +18,6 @@ const initialState = {
   role: "",
   searchTerm: "",
   sortBy: "",
-  userId: "",
   totalPages: "",
   page: 1,
   limit: "",
@@ -81,16 +79,6 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         sortBy: action.payload
       };
-    case SET_USER_ID:
-      return {
-        ...state,
-        userId: action.payload
-      };
-    case CLEAR_USER_ID:
-      return {
-        ...state,
-        userId: ""
-      };
     case SET_USERS_PAGE:
       return {
         ...state,
@@ -100,6 +88,11 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         totalUsers: state.totalUsers + 1
+      };
+    case DECREMENT_TOTAL_USER:
+      return {
+        ...state,
+        totalUsers: state.totalUsers - 1
       };
     default:
       return state;

@@ -2,7 +2,6 @@ import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
 import { openModal } from "actions/modal";
-import { setUserId } from "actions/user-action";
 import { Tbody, Td, Tr } from "components/table";
 import { UserProfile, NameWrapper } from "./style";
 
@@ -29,14 +28,7 @@ const TableBody = ({ allUsers, openModal, setUserId }) => {
           <Td hasLinks>
             <a href="/">Edit</a>
             {" | "}
-            <button
-              onClick={() => {
-                setUserId(user._id);
-                openModal("DELETE_USER");
-              }}
-            >
-              Delete
-            </button>
+            <button onClick={() => openModal("DELETE_USER", user._id)}>Delete</button>
           </Td>
         </Tr>
       ))}
@@ -52,8 +44,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    openModal: modalType => dispatch(openModal(modalType)),
-    setUserId: id => dispatch(setUserId(id))
+    openModal: (modalType, modalProps) => dispatch(openModal(modalType, modalProps))
   };
 };
 
