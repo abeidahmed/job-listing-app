@@ -12,6 +12,8 @@ export const StyledHeader = styled.header`
   padding: 0 24px;
   background-color: white;
   z-index: ${zIndex.header};
+  position: sticky;
+  top: 0;
 `;
 
 export const Wrapper = styled.div`
