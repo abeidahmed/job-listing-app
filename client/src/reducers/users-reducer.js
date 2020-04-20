@@ -1,6 +1,7 @@
 import {
   ALL_USERS_FETCH_ERROR,
   CLEAR_USER_ID,
+  CREATE_USER,
   FETCH_ALL_USERS,
   USERS_LOADING,
   SEARCH_USERS,
@@ -46,6 +47,11 @@ export const usersReducer = (state = initialState, action) => {
         hasNextPage: action.payload.hasNextPage,
         prevPage: action.payload.prevPage,
         nextPage: action.payload.nextPage
+      };
+    case CREATE_USER:
+      return {
+        ...state,
+        users: [action.payload, ...state.users]
       };
     case ALL_USERS_FETCH_ERROR:
       return {

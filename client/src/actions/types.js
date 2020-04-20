@@ -31,3 +31,13 @@ export const SORT_USERS = "SORT_USERS";
 export const SET_USER_ID = "SET_USER_ID";
 export const CLEAR_USER_ID = "CLEAR_USER_ID";
 export const SET_USERS_PAGE = "SET_USERS_PAGE";
+export const CREATE_USER = "CREATE_USER";
+
+/**
+ * @type Admin creates user
+ */
+export const SET_FIRST_NAME = "SET_FIRST_NAME";
+export const SET_LAST_NAME = "SET_LAST_NAME";
+export const SET_EMAIL = "SET_EMAIL";
+export const SET_ROLE = "SET_ROLE";
+export const SET_PASSWORD = "SET_PASSWORD";

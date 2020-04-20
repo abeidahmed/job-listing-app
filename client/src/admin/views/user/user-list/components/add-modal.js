@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { breakpoint } from "utils/breakpoint";
+import { createUserByAdmin } from "api/user";
 import { closeModal } from "actions/modal";
 import { Col } from "components/layout";
 import { H3, Para } from "components/typography";
 import Modal from "components/modal";
 import { ModalTop, ModalBottom } from "components/modal";
 import { InputField, StyledSelect } from "components/field";
+import { setFirstName, setLastName, setEmail, setRole, setPassword } from "actions/create-user";
 import { StyledButton } from "components/button";
 
 const FormContainer = styled.div`
@@ -46,10 +48,29 @@ const Button = styled(StyledButton)`
   `}
 `;
 
-const AddUserModal = ({ closeModal, modalType }) => {
+const AddUserModal = ({
+  closeModal,
+  modalType,
+  firstName,
+  lastName,
+  email,
+  role,
+  password,
+  sendFirstName,
+  sendLastName,
+  sendEmail,
+  sendRole,
+  sendPassword,
+  postUser
+}) => {
+  const handleSubmit = async e => {
+    e.preventDefault();
+    await postUser();
+  };
+
   return (
     <Modal onOutsideClick={closeModal} isActive={modalType === "ADD_USER"}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <ModalTop>
           <H3 color="dark" weight="medium">
             Add user
@@ -62,7 +83,14 @@ const AddUserModal = ({ closeModal, modalType }) => {
                 </Para>
               </Col>
               <Col md="70%">
-                <Input id="admin_add_user1" size="sm" type="text" required />
+                <Input
+                  id="admin_add_user1"
+                  size="sm"
+                  type="text"
+                  required
+                  value={firstName}
+                  onChange={e => sendFirstName(e.target.value)}
+                />
               </Col>
             </FormGroup>
             <FormGroup>
@@ -72,7 +100,14 @@ const AddUserModal = ({ closeModal, modalType }) => {
                 </Para>
               </Col>
               <Col md="70%">
-                <Input id="admin_add_user2" size="sm" type="text" required />
+                <Input
+                  id="admin_add_user2"
+                  size="sm"
+                  type="text"
+                  required
+                  value={lastName}
+                  onChange={e => sendLastName(e.target.value)}
+                />
               </Col>
             </FormGroup>
             <FormGroup>
@@ -82,7 +117,14 @@ const AddUserModal = ({ closeModal, modalType }) => {
                 </Para>
               </Col>
               <Col md="70%">
-                <Input id="admin_add_user3" size="sm" type="email" required />
+                <Input
+                  id="admin_add_user3"
+                  size="sm"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={e => sendEmail(e.target.value)}
+                />
               </Col>
             </FormGroup>
             <FormGroup>
@@ -92,7 +134,12 @@ const AddUserModal = ({ closeModal, modalType }) => {
                 </Para>
               </Col>
               <Col md="70%">
-                <StyledSelect size="sm" id="admin_add_user5">
+                <StyledSelect
+                  size="sm"
+                  id="admin_add_user5"
+                  value={role}
+                  onChange={e => sendRole(e.target.value)}
+                >
                   <option value="Admin">Admin</option>
                   <option value="Employer">Employer</option>
                   <option value="User">User</option>
@@ -106,7 +153,14 @@ const AddUserModal = ({ closeModal, modalType }) => {
                 </Para>
               </Col>
               <Col md="70%">
-                <Input id="admin_add_user4" size="sm" type="password" required />
+                <Input
+                  id="admin_add_user4"
+                  size="sm"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={e => sendPassword(e.target.value)}
+                />
               </Col>
             </FormGroup>
           </FormContainer>
@@ -125,14 +179,26 @@ const AddUserModal = ({ closeModal, modalType }) => {
 };
 
 const mapStateToProps = state => {
+  const { firstName, lastName, email, role, password } = state.createUser;
   return {
-    modalType: state.modalReducer.modalType
+    modalType: state.modalReducer.modalType,
+    firstName,
+    lastName,
+    email,
+    role,
+    password
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    postUser: () => dispatch(createUserByAdmin()),
+    sendFirstName: value => dispatch(setFirstName(value)),
+    sendLastName: value => dispatch(setLastName(value)),
+    sendEmail: value => dispatch(setEmail(value)),
+    sendRole: value => dispatch(setRole(value)),
+    sendPassword: value => dispatch(setPassword(value))
   };
 };
 

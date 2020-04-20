@@ -1,6 +1,7 @@
 import {
   ALL_USERS_FETCH_ERROR,
   CLEAR_USER_ID,
+  CREATE_USER,
   CURRENT_USER_FETCH_ERROR,
   FETCH_ALL_USERS,
   USERS_LOADING,
@@ -102,5 +103,12 @@ export const setUsersPage = page => {
   return {
     type: SET_USERS_PAGE,
     payload: page
+  };
+};
+
+export const createUser = user => {
+  return {
+    type: CREATE_USER,
+    payload: user
   };
 };
